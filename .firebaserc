@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "clinica-b10cd": {
+      "hosting": {
+        "Clinica": [
+          "clinica-b10cd"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "clinica-b10cd"
+  }
+}

@@ -1,0 +1,93 @@
+<div class="container">
+    <form [formGroup]="forma" (ngSubmit)="aceptar()">
+      <div class="row">
+        <div class="col-md-12 mb-5">
+          <h2>Angular Forms</h2>
+        </div>
+      </div>
+      <div class="row formulario">
+        <div class="col-md-6 mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" formControlName="nombre">
+          <small class="invalid" 
+            *ngIf="forma.controls.nombre.errors?.required &&
+            forma.controls.nombre.touched">
+            El nombre es requerido
+          </small>
+          <small class="invalid" 
+          *ngIf="forma.controls.nombre.errors?.containsSpaces &&
+          forma.controls.nombre.touched">
+          El nombre no puede contener espacios
+        </small>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" formControlName="apellido"> 
+          <small class="invalid"
+            *ngIf="forma.controls.apellido.errors?.required &&
+            forma.controls.apellido.touched">
+            El apellido es requerido
+          </small>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="dni" class="form-label">Edad</label>
+          <input type="number" class="form-control" id="edad" placeholder="Ingrese edad" formControlName="edad">
+          <small class="invalid"
+            *ngIf="forma.controls.edad.errors?.required &&
+            forma.controls.edad.touched">
+            La edad es requerida
+          </small>
+          <small class="invalid"
+            *ngIf="forma.controls.edad.errors?.min || 
+            forma.controls.edad.errors?.max &&
+            forma.controls.edad.touched">
+            La edad debe ser de 18 a 99 años
+          </small>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="sexo" class="form-label">Sexo</label>
+          <select class="form-select" id="sexo" formControlName="sexo">
+            <option value="">Seleccione uno</option>
+            <option value="F">Femenino</option>
+            <option value="M">Masculino</option>
+          </select>
+          <small class="invalid"
+            *ngIf="forma.controls.sexo.errors?.required &&
+            forma.controls.sexo.touched">
+            El sexo es requerido
+          </small>
+        </div>
+        <div class="col-md-12 mb-5">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="Ingrese email" formControlName="email">
+          <small class="invalid" 
+            *ngIf="forma.controls.email.errors?.required &&
+            forma.controls.email.touched">
+            El email es requerido
+          </small>
+          <small class="invalid" 
+            *ngIf="forma.controls.email.errors?.email &&
+            forma.controls.email.touched">
+            El email no tiene el formato correcto
+        </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mb-5">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="terminos" formControlName="terminos">
+            <label for="recordar" class="form-check-label" for="terminos">
+              Aceptar términos y condiciones
+            </label>
+          </div>
+        </div>
+        <div class="col-md-12 d-grid gap-2">
+          <button type="submit" 
+          class="btn btn-primary btn-block" 
+          [disabled]="forma.invalid || !forma.controls.terminos.value">
+          Aceptar
+        </button>
+        </div>
+      </div>
+    </form>
+  </div>

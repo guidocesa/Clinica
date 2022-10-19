@@ -16,6 +16,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { TablaUsuariosComponent } from './tabla-usuarios/tabla-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
     RegisterComponent,
     LoginComponent,
     RegisterEspecialistaComponent,
-    RegisterPacienteComponent
+    RegisterPacienteComponent,
+    TablaUsuariosComponent
   ],
   imports: [
     BrowserModule,

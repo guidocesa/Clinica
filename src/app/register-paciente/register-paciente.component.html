@@ -1,8 +1,8 @@
 <div class="container">
     <form [formGroup]="forma" (ngSubmit)="aceptar()">
       <div class="row">
-        <div class="col-md-12 mb-3">
-          <h2>Angular Forms</h2>
+        <div class="col-md-12 mb-1">
+          <h2>Registro Paciente</h2>
         </div>
       </div>
       <div class="row formulario">
@@ -63,25 +63,12 @@
             </small>
             <small class="invalid"
               *ngIf="forma.controls.edad.errors?.min || 
-              forma.controls.edad.errors?.max &&
-              forma.controls.edad.touched">
+              forma.controls.dni.errors?.max &&
+              forma.controls.dni.touched">
               El DNI debe ser de 1.000.000 a 100.000.000.
             </small>
-          </div>
-        <div class="col-md-6 mb-1">
-          <label for="sexo" class="form-label">Sexo</label>
-          <select class="form-select" id="sexo" formControlName="sexo">
-            <option value="">Seleccione uno</option>
-            <option value="F">Femenino</option>
-            <option value="M">Masculino</option>
-          </select>
-          <small class="invalid"
-            *ngIf="forma.controls.sexo.errors?.required &&
-            forma.controls.sexo.touched">
-            El sexo es requerido
-          </small>
         </div>
-        <div class="col-md-12 mb-1">
+        <div class="col-md-6 mb-1">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control" id="email" placeholder="Ingrese email" formControlName="email">
           <small class="invalid" 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FirestorageService } from '../servicios/firestorage.service';
 
 @Component({
   selector: 'app-register-paciente',
@@ -11,7 +12,7 @@ export class RegisterPacienteComponent implements OnInit {
 
   public forma!: FormGroup;
 
-  public constructor(private fb: FormBuilder) {}
+  public constructor(private fb: FormBuilder, private fs: FirestorageService) {}
 
   ngOnInit(): void {
 
@@ -42,6 +43,8 @@ export class RegisterPacienteComponent implements OnInit {
 
   public aceptar(): void {
     console.log(this.forma.getRawValue());
+    this.fs.addUser(this.forma.getRawValue(), "pacientes");
+
   }
 
   // CUSTOM VALIDATOR

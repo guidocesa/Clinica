@@ -1,12 +1,12 @@
 <div class="container">
     <form [formGroup]="forma" (ngSubmit)="aceptar()">
       <div class="row">
-        <div class="col-md-12 mb-5">
+        <div class="col-md-12 mb-3">
           <h2>Angular Forms</h2>
         </div>
       </div>
       <div class="row formulario">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-1">
           <label for="nombre" class="form-label">Nombre</label>
           <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" formControlName="nombre">
           <small class="invalid" 
@@ -20,7 +20,7 @@
           El nombre no puede contener espacios
         </small>
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-1">
           <label for="apellido" class="form-label">Apellido</label>
           <input type="text" class="form-control" id="apellido" placeholder="Ingrese apellido" formControlName="apellido"> 
           <small class="invalid"
@@ -29,7 +29,7 @@
             El apellido es requerido
           </small>
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-1">
             <label for="obraSocial" class="form-label">Obra Social</label>
             <input type="text" class="form-control" id="obraSocial" placeholder="Ingrese Obra Social" formControlName="obraSocial"> 
             <small class="invalid"
@@ -38,7 +38,7 @@
               La obra social es requerida
             </small>
           </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-1">
           <label for="edad" class="form-label">Edad</label>
           <input type="number" class="form-control" id="edad" placeholder="Ingrese edad" formControlName="edad">
           <small class="invalid"
@@ -53,12 +53,12 @@
             La edad debe ser de 18 a 99 años
           </small>
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-1">
             <label for="dni" class="form-label">DNI</label>
             <input type="number" class="form-control" id="dni" placeholder="Ingrese DNI" formControlName="dni">
             <small class="invalid"
-              *ngIf="forma.controls.edad.errors?.required &&
-              forma.controls.edad.touched">
+              *ngIf="forma.controls.dni.errors?.required &&
+              forma.controls.dni.touched">
               El DNI es requerido
             </small>
             <small class="invalid"
@@ -68,7 +68,7 @@
               El DNI debe ser de 1.000.000 a 100.000.000.
             </small>
           </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-1">
           <label for="sexo" class="form-label">Sexo</label>
           <select class="form-select" id="sexo" formControlName="sexo">
             <option value="">Seleccione uno</option>
@@ -81,7 +81,7 @@
             El sexo es requerido
           </small>
         </div>
-        <div class="col-md-12 mb-5">
+        <div class="col-md-12 mb-1">
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control" id="email" placeholder="Ingrese email" formControlName="email">
           <small class="invalid" 
@@ -95,7 +95,7 @@
             El email no tiene el formato correcto
         </small>
         </div>
-        <div class="col-md-12 mb-5">
+        <div class="col-md-12 mb-1">
             <label for="password" class="form-label">Contraseña</label>
             <input type="password" class="form-control" id="password" placeholder="Ingrese contraseña" formControlName="password">
             <small class="invalid" 
@@ -109,16 +109,16 @@
               La contraseña debe ser mas larga
           </small>
           </div>
-          <div class="col-md-12 mb-5">
+          <div class="col-md-12 mb-1">
             <label for="password2" class="form-label">Repetir contraseña</label>
             <input type="password2" class="form-control" id="password2" placeholder="Repita contraseña" formControlName="password2">
             <small class="invalid" 
               *ngIf="forma.controls.password.value != forma.controls.password2.value &&
-              forma.controls.password.touched">
+              forma.controls.password2.touched">
               La contraseña no coincide
           </small>
           </div>
-          <div class="col-md-6 mb-3">
+          <div class="col-md-6 mb-1">
             <label for="foto1" class="form-label">Foto 1</label>
             <input type="file" class="form-control" id="foto1" placeholder="Seleccione una Foto" formControlName="foto1"> 
             <small class="invalid"
@@ -127,7 +127,7 @@
               Las fotos son requeridas
             </small>
           </div>
-          <div class="col-md-6 mb-3">
+          <div class="col-md-6 mb-1">
             <label for="foto2" class="form-label">Foto 2</label>
             <input type="file" class="form-control" id="foto2" placeholder="Seleccione otra Foto" formControlName="foto2"> 
             <small class="invalid"
@@ -138,18 +138,10 @@
           </div>
       </div>
       <div class="row">
-        <div class="col-md-12 mb-5">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="terminos" formControlName="terminos">
-            <label for="recordar" class="form-check-label" for="terminos">
-              Aceptar términos y condiciones
-            </label>
-          </div>
-        </div>
         <div class="col-md-12 d-grid gap-2">
           <button type="submit" 
           class="btn btn-primary btn-block" 
-          [disabled]="forma.invalid || !forma.controls.terminos.value">
+          [disabled]="forma.invalid">
           Aceptar
         </button>
         </div>

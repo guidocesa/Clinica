@@ -30,9 +30,10 @@ export class RegisterPacienteComponent implements OnInit {
       'obraSocial': ['', Validators.required],
       'edad': ['', [Validators.required, Validators.min(18), Validators.max(99)]],
       'dni': ['', Validators.required, Validators.min(1000000), Validators.max(100000000)],
+      'sexo': ['', Validators.required],
       'email': ['', [Validators.required, Validators.email]],
-      'contraseña': ['', Validators.required],
-      'contraseña2': ['', Validators.required],
+      'password': ['', Validators.required],
+      'password2': ['', Validators.required],
       'foto1': ['', Validators.required],
       'foto2': ['', Validators.required]
     });

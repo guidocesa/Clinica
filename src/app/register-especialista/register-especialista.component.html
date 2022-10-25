@@ -53,10 +53,10 @@
     El DNI es requerido
   </small>
   <small class="invalid"
-  *ngIf="forma.controls.edad.errors?.min || 
+  *ngIf="forma.controls.dni.errors?.min || 
   forma.controls.dni.errors?.max &&
   forma.controls.dni.touched">
-  El DNI debe ser de 1.000.000 a 100.000.000.
+  El DNI debe ser de x.xxx.xxx a xxx.xxx.xxx.
 </small>
 </div>
 <div class="col-md-6 mb-1">
@@ -105,15 +105,10 @@ El email no tiene el formato correcto
             forma.controls.password.touched">
             La contraseña es requerida
           </small>
-          <small class="invalid" 
-            *ngIf="forma.controls.password.errors?.password &&
-            forma.controls.password.touched">
-            La contraseña debe ser mas larga
-        </small>
         </div>
         <div class="col-md-6 mb-1">
           <label for="password2" class="form-label">Repetir contraseña</label>
-          <input type="password2" class="form-control" id="password2" placeholder="Repita contraseña" formControlName="password2">
+          <input type="password" class="form-control" placeholder="Repita contraseña" formControlName="password2">
           <small class="invalid" 
             *ngIf="forma.controls.password.value != forma.controls.password2.value &&
             forma.controls.password2.touched">
@@ -121,11 +116,11 @@ El email no tiene el formato correcto
         </small>
         </div>
         <div class="col-md-12 mb-1">
-          <label for="foto1" class="form-label">Foto 1</label>
-          <input type="file" class="form-control" id="foto1" placeholder="Seleccione una Foto" formControlName="foto1"> 
+          <label for="foto" class="form-label">Foto 1</label>
+          <input type="file" class="form-control" id="foto" placeholder="Seleccione una Foto" formControlName="foto" (change)="cambioArchivo($event)"> 
           <small class="invalid"
-            *ngIf="forma.controls.foto1.errors?.required &&
-            forma.controls.foto1.touched">
+            *ngIf="forma.controls.foto.errors?.required &&
+            forma.controls.foto.touched">
             La foto son requeridas
           </small>
         </div>
@@ -134,7 +129,7 @@ El email no tiene el formato correcto
       <div class="col-md-12 d-grid gap-2">
         <button type="submit" 
         class="btn btn-primary btn-block" 
-        [disabled]="forma.invalid || !forma.controls.terminos.value">
+        [disabled]="forma.invalid ">
         Aceptar
       </button>
       </div>

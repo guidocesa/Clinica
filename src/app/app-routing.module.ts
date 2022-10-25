@@ -7,6 +7,7 @@ import { RegisterPacienteComponent } from './register-paciente/register-paciente
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'bienvenido', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegisterComponent},
   {path: 'registroprofesional', component: RegisterEspecialistaComponent},

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirestorageService } from  '../servicios/firestorage.service'
+import { FirestorageService } from  '../servicios/firestorage.service';
+import { Profesional } from '../servicios/profesional';
 
 @Component({
   selector: 'app-register-especialista',
@@ -11,6 +12,7 @@ import { FirestorageService } from  '../servicios/firestorage.service'
 export class RegisterEspecialistaComponent implements OnInit {
 
   public forma!: FormGroup;
+  foto = '';
 
   public constructor(private fb: FormBuilder, private fs: FirestorageService) {}
 
@@ -32,20 +34,55 @@ que no se encuentre entre las posibilidades
       'nombre': ['', [Validators.required, this.spacesValidator]],
       'apellido': ['', Validators.required],
       'especialidad': ['', Validators.required],
-      'especialidadNueva': ['', Validators.required],
       'edad': ['', [Validators.required, Validators.min(18), Validators.max(99)]],
-      'dni': ['', Validators.required, Validators.min(1000000), Validators.max(100000000)],
+      'dni': ['', [Validators.required, Validators.min(1000000), Validators.max(99999999)]],
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', Validators.required],
       'password2': ['', Validators.required],
-      'foto1': ['', Validators.required]
+      'foto': ['', Validators.required]
     });
 
   }
 
   public aceptar(): void {
-    console.log(this.forma.getRawValue());
-    this.fs.addUser(this.forma.getRawValue(), "profesionales");
+    let pro:Profesional = {
+      nombre: '',
+      apellido: '',
+      edad: '',
+      dni: '',
+      especialidad: undefined,
+      email: undefined,
+      password: '',
+      foto: '',
+      verificada: false
+    };
+    pro.nombre =  this.forma.get('nombre')?.value;
+    pro.apellido =  this.forma.get('apellido')?.value;
+    pro.edad =  this.forma.get('edad')?.value;
+    pro.dni =  this.forma.get('dni')?.value;
+    pro.especialidad =  this.forma.get('especialidad')?.value;
+    pro.foto = this.foto;
+    if(this.forma.get('especialidad')?.value == 'otra')
+    {
+      pro.especialidad = this.forma.get('especialidadNueva')?.value;
+    }
+    pro.email =  this.forma.get('email')?.value;
+    pro.password =  this.forma.get('password')?.value;
+    //aca hay que subir la foto
+    console.log(pro);
+    this.fs.addUser(pro, "profesionales");
+  }
+
+  async cambioArchivo(event : any) {
+    if (event.target.files.length > 0) {        
+      let nombreArchivo = event.target.files[0].name;    
+      let tarea = await this.fs.tareaCloudStorage(nombreArchivo,event.target.files[0]);    
+      let referencia = this.fs.referenciaCloudStorage(nombreArchivo);
+      console.log(tarea);
+      referencia.getDownloadURL().subscribe( x => 
+        this.foto = x
+      )
+    }
   }
 
   // CUSTOM VALIDATOR

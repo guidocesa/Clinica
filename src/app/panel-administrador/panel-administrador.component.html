@@ -1,0 +1,7 @@
+<select #tipo (change)="recargarTabla(tipo.value)" type="text" placeholder="Seleccione los Usuarios a Ver">
+    <option value="profesionales">Profesionales</option>
+    <option value="pacientes">Pacientes</option>
+    <option value="administradores">Administradores</option>
+  </select>
+<app-tabla-usuarios [listaItems]="profesionales"></app-tabla-usuarios>
+<button (click)="openDialogBox()">Agregar Administrador</button>

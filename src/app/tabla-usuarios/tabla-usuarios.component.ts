@@ -9,6 +9,7 @@ import { FirestorageService } from '../servicios/firestorage.service';
 export class TablaUsuariosComponent implements OnInit {
 
   @Input() listaItems: any;
+  @Input() perfil: any;
 
 
   constructor(private dbService: FirestorageService) { }
@@ -28,4 +29,10 @@ export class TablaUsuariosComponent implements OnInit {
     
     }, 200);
   }
+
+  habilitarProfesional(email:string)
+  {
+    
+  }
+
 }

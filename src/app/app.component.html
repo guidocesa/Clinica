@@ -1,1 +1,43 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" >Clinica Labo 4</a>
+  
+      <!-- Collapsible wrapper -->
+      <div
+        class="collapse navbar-collapse"
+        id="navbarSupportedContent"
+        mdbCollapse
+      >
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Bienvenido</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" *ngIf="tipo == 'admin'" [routerLink]="['/paneladministrador']">Panel Administrador</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link  active" [routerLink]="['/registro']">Registro</a>
+            </li>
+            <li *ngIf="!loggedin" class="nav-item">
+                <a class="nav-link  active"  [routerLink]="['/login']" tabindex="-1" aria-disabled="true"
+                >Login</a
+                >
+            </li>
+            <li *ngIf="loggedin" class="nav-item">
+              <a class="nav-link  active" href="" (click)="logout()" tabindex="-1" aria-disabled="true"
+              >Logout</a
+              >
+          </li>
+        </ul>
+
+        </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
 <router-outlet></router-outlet>

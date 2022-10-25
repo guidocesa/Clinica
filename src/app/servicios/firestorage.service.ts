@@ -20,6 +20,13 @@ export class FirestorageService {
     return userCollection.valueChanges();
   }
 
+  getUserSegunEmail(email:string, db:string)
+  {
+    console.log(email);
+    var user:any;
+    return this.afs.collection(db, ref => ref.where('email', '==', email)).valueChanges();
+  }
+
   addUser(user:any, db:string)
   {
     var userCollection = this.afs.collection(db);

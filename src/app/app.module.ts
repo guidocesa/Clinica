@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { TablaUsuariosComponent } from './tabla-usuarios/tabla-usuarios.component';
 import { RegisterAdministradorComponent } from './register-administrador/register-administrador.component';
+import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
+import { UserNotVerifiedComponent } from './user-not-verified/user-not-verified.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterAdminComponent } from './register-admin/register-admin.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,10 @@ import { RegisterAdministradorComponent } from './register-administrador/registe
     RegisterEspecialistaComponent,
     RegisterPacienteComponent,
     TablaUsuariosComponent,
-    RegisterAdministradorComponent
+    RegisterAdministradorComponent,
+    PanelAdministradorComponent,
+    UserNotVerifiedComponent,
+    RegisterAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +46,11 @@ import { RegisterAdministradorComponent } from './register-administrador/registe
     provideFirestore(() => getFirestore()),
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
-  providers: [ AngularFireAuth, { provide: FIREBASE_OPTIONS, useValue: environment.firebase } ],
+  providers: [ AngularFireAuth, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, { provide: MatDialogRef, useValue: {}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

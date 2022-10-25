@@ -107,7 +107,7 @@
           </div>
           <div class="col-md-6 mb-1">
             <label for="foto1" class="form-label">Foto 1</label>
-            <input type="file" class="form-control" id="foto1" placeholder="Seleccione una Foto" formControlName="foto1"> 
+            <input (change)="cambioArchivo($event, 0)" type="file" class="form-control" id="foto1" placeholder="Seleccione una Foto" formControlName="foto1"> 
             <small class="invalid"
               *ngIf="forma.controls.foto1.errors?.required &&
               forma.controls.foto1.touched">
@@ -116,7 +116,7 @@
           </div>
           <div class="col-md-6 mb-1">
             <label for="foto2" class="form-label">Foto 2</label>
-            <input type="file" class="form-control" id="foto2" placeholder="Seleccione otra Foto" formControlName="foto2"> 
+            <input (change)="cambioArchivo($event, 1)" type="file" class="form-control" id="foto2" placeholder="Seleccione otra Foto" formControlName="foto2"> 
             <small class="invalid"
               *ngIf="forma.controls.foto2.errors?.required &&
               forma.controls.foto2.touched">

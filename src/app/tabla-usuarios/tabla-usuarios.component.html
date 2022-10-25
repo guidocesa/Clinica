@@ -11,16 +11,13 @@
                     {{item.dni}}
                 </td>
                 <td>
-                    {{item.nombre}} {{item.apellido}}
-                </td>
-                <td>
-                    {{item.perfil}}
+                    {{item.nombre + " " + item.apellido}}
                 </td>
                 <td>
                     <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Habilitar</button>
+                    <button *ngIf="item.verificada === false" type="button" class="btn btn-sm btn-outline-secondary" (click)="habilitarProfesional(item.email)">Habilitar</button>
                 </td>
         
             </tr>

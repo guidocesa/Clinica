@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireStorage } from '@angular/fire/compat/storage'
 import { IdTokenResult, User } from '@angular/fire/auth';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { IdTokenResult, User } from '@angular/fire/auth';
 export class FirestorageService {
 
 
-  constructor(private afs:AngularFirestore, private afa: AngularFireAuth){
+  constructor(private afs:AngularFirestore, private afa: AngularFireAuth, private storage: AngularFireStorage){
   }
 
 
@@ -29,4 +30,17 @@ export class FirestorageService {
     console.log(userNuevo);
     userCollection.add(user);
   }
+
+  public tareaCloudStorage(nombreArchivo: string, datos: any) {
+    
+    return this.storage.upload(nombreArchivo, datos);
+
+  }
+
+  //Referencia del archivo
+  public referenciaCloudStorage(nombreArchivo: string) {
+    return this.storage.ref(nombreArchivo);
+  }
+
+  
 }

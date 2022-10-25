@@ -1,1 +1,31 @@
-<p>tabla-usuarios works!</p>
+<main role="main">
+    <div class="jumbotron container-fluid py-5 p-5 mb-4 bg-light rounded-3">
+  
+      <div class="col-md d-flex flex-wrap justify-content-center " >
+          <table style="width: 60%;">
+            <th *ngFor = "let column of headers">
+                {{column}}
+            </th>
+            <tr *ngFor = "let item of listaItems">
+                <td>
+                    {{item.dni}}
+                </td>
+                <td>
+                    {{item.nombre}} {{item.apellido}}
+                </td>
+                <td>
+                    {{item.perfil}}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Habilitar</button>
+                </td>
+        
+            </tr>
+          </table>
+      </div>
+  
+    </div>
+  </main>

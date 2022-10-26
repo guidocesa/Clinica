@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FirestorageService } from '../servicios/firestorage.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class TablaUsuariosComponent implements OnInit {
 
   @Input() listaItems: any;
   @Input() perfil: any;
+  @Output() habilitarProfesionalEmit: EventEmitter<any> = new EventEmitter();
 
 
   constructor(private dbService: FirestorageService) { }
@@ -32,7 +33,7 @@ export class TablaUsuariosComponent implements OnInit {
 
   habilitarProfesional(email:string)
   {
-    
+    this.habilitarProfesionalEmit.emit(email);
   }
 
 }

@@ -3,5 +3,5 @@
     <option value="pacientes">Pacientes</option>
     <option value="administradores">Administradores</option>
   </select>
-<app-tabla-usuarios [listaItems]="profesionales"></app-tabla-usuarios>
+<app-tabla-usuarios (habilitarProfesionalEmit)="habilitarProfesional($event)" [listaItems]="profesionales"></app-tabla-usuarios>
 <button (click)="openDialogBox()">Agregar Administrador</button>

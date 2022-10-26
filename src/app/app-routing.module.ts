@@ -6,6 +6,7 @@ import { PanelAdministradorComponent } from './panel-administrador/panel-adminis
 import { RegisterEspecialistaComponent } from './register-especialista/register-especialista.component';
 import { RegisterPacienteComponent } from './register-paciente/register-paciente.component';
 import { RegisterComponent } from './register/register.component';
+import { UserNotVerifiedComponent } from './user-not-verified/user-not-verified.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'bienvenido', pathMatch: 'full'},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'registroprofesional', component: RegisterEspecialistaComponent},
   {path: 'registropaciente', component: RegisterPacienteComponent},
   {path: 'bienvenido', component: BienvenidaComponent},
-  {path: 'paneladministrador', component: PanelAdministradorComponent}
+  {path: 'paneladministrador', component: PanelAdministradorComponent},
+  {path: 'usuarionoverificado', component: UserNotVerifiedComponent}
 ];
 
 @NgModule({

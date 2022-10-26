@@ -24,8 +24,13 @@ export class PanelAdministradorComponent implements OnInit {
   }
   recargarTabla(tipo:string)
   {
+    console.log(this.profesionales);
     this.fs.getlistado(tipo).forEach( x =>
       this.profesionales = x);
+  }
+  habilitarProfesional(email:string)
+  {
+    this.fs.verificarProfesional(email);
   }
 
 }

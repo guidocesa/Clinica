@@ -33,8 +33,7 @@ export class RegisterPacienteComponent implements OnInit {
       'apellido': ['', Validators.required],
       'obraSocial': ['', Validators.required],
       'edad': ['', [Validators.required, Validators.min(18), Validators.max(99)]],
-      'dni': ['', Validators.required, Validators.min(1000000), Validators.max(100000000)],
-      'sexo': ['', Validators.required],
+      'dni': ['', [Validators.required, Validators.min(1000000), Validators.max(100000000)]],
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', Validators.required],
       'password2': ['', Validators.required],
@@ -54,8 +53,7 @@ export class RegisterPacienteComponent implements OnInit {
       email: '',
       password: '',
       foto1: '',
-      foto2: '',
-      verificada: false
+      foto2: ''
     }
     var aux = this.forma.getRawValue();
     console.log(this.forma.getRawValue());

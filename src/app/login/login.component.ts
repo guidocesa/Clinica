@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   async login(email: any, pass: any)
   {
     let user : any;
+    let profesionalHabilitado = false;
     await this.fireAuth.signInWithEmailAndPassword(email, pass).
     catch(function(error)
     {
@@ -41,10 +42,19 @@ export class LoginComponent implements OnInit {
         var encontrado = false;
 
         var userActualCollection = await this.fs.getUserSegunEmail(user.email, 'profesionales');
-        userActualCollection.forEach( (x) => {
+        await userActualCollection.forEach( (x :any)  =>  {
+          console.log(x);
           if(x.length > 0){
-            localStorage.setItem('tipo','profesional');
-            encontrado = true;
+            profesionalHabilitado = x[0].verificada;
+            console.log(x[0].verificada);
+            if(x[0].verificada){
+              localStorage.setItem('tipo','profesional');
+              localStorage.setItem('user', user.email);
+              this.router.navigateByUrl("/bienvenido");
+            }
+            else{
+              this.router.navigateByUrl("/usuarionoverificado");
+            }
           }
         });
         if(!encontrado)
@@ -53,6 +63,7 @@ export class LoginComponent implements OnInit {
           userActualCollection.forEach( (x) => {
             if(x.length > 0){
               localStorage.setItem('tipo','paciente');
+              localStorage.setItem('user', user.email);
               encontrado = true;
             }
           });
@@ -63,18 +74,22 @@ export class LoginComponent implements OnInit {
           userActualCollection.forEach( (x) => {
             if(x.length > 0){
               localStorage.setItem('tipo','admin');
+              localStorage.setItem('user', user.email);
               encontrado = true;
             }
           });
         }
-        refresh();
+        if(encontrado)
+        {
+          await this.router.navigateByUrl("/bienvenido");
+          refresh();
+        }
       }
       else
       {
-        //pagina de error
         this.fireAuth.signOut();
+        this.router.navigateByUrl("/usuarionoverificado");
       }
-      localStorage.setItem('user', user.email);
     }
     else{
       alert("Mal credenciales");

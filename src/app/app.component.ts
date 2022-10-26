@@ -25,6 +25,7 @@ export class AppComponent {
   logout()
   {
     localStorage.removeItem("user");
+    localStorage.removeItem("tipo");
     window.location.reload();
     this.r.navigateByUrl("/login");
   }

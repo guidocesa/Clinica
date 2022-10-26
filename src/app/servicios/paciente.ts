@@ -7,7 +7,6 @@ export interface Paciente{
     email:any,
     password:string,
     foto1:any,
-    foto2:any,
-    verificada:boolean
+    foto2:any
 
 }

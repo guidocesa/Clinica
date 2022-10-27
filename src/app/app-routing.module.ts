@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LoginComponent } from './login/login.component';
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
-import { RegisterEspecialistaComponent } from './register-especialista/register-especialista.component';
-import { RegisterPacienteComponent } from './register-paciente/register-paciente.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterEspecialistaComponent } from './Registros/register-especialista/register-especialista.component';
+import { RegisterPacienteComponent } from './Registros/register-paciente/register-paciente.component';
+import { RegisterComponent } from './Registros/register/register.component';
 import { UserNotVerifiedComponent } from './user-not-verified/user-not-verified.component';
 
 const routes: Routes = [

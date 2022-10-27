@@ -28,10 +28,10 @@ export class FirestorageService {
     return this.afs.collection(db, ref => ref.where('email', '==', email)).valueChanges();
   }
 
-  addUser(user:any, db:string)
+  async addUser(user:any, db:string)
   {
     var userCollection = this.afs.collection(db);
-    userCollection.add(user);
+    await userCollection.add(user);
     var userNuevo = this.afa.createUserWithEmailAndPassword(user.email, user.password).then( (result) => {
       this.afa.currentUser.then( (u: any) => u.sendEmailVerification());
       return result

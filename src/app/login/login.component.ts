@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
 
   @Output() newLoginEvent = new EventEmitter<any>();
 
+  seleccion  = '';
+  loading = false;
+
   constructor(
     private router: Router,
     private fireAuth: AngularFireAuth,
@@ -22,11 +25,31 @@ export class LoginComponent implements OnInit {
   ) {}
 
 	ngOnInit() {
+    if(localStorage.getItem('user'))
+    {
+      this.router.navigateByUrl('/bienvenido');
+    }
 	}
+
+  cambioSeleccion(sleccion:any)
+  {
+    this.seleccion = sleccion;
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 3000);
+  }
+
+  completarCampos(user:any)
+  {
+    (<HTMLInputElement> document.getElementById('email')).value = user.email;
+    (<HTMLInputElement> document.getElementById('password')).value = user.password;
+  }
 
 
   async login(email: any, pass: any)
   {
+    this.loading = true;
     let user : any;
     let profesionalHabilitado = false;
     await this.fireAuth.signInWithEmailAndPassword(email, pass).
@@ -42,7 +65,7 @@ export class LoginComponent implements OnInit {
         var encontrado = false;
 
         var userActualCollection = await this.fs.getUserSegunEmail(user.email, 'profesionales');
-        await userActualCollection.forEach( (x :any)  =>  {
+        userActualCollection.forEach( (x :any)  =>  {
           console.log(x);
           if(x.length > 0){
             profesionalHabilitado = x[0].verificada;
@@ -50,7 +73,7 @@ export class LoginComponent implements OnInit {
             if(x[0].verificada){
               localStorage.setItem('tipo','profesional');
               localStorage.setItem('user', user.email);
-              this.router.navigateByUrl("/bienvenido");
+              refresh();
             }
             else{
               this.router.navigateByUrl("/usuarionoverificado");
@@ -65,6 +88,7 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('tipo','paciente');
               localStorage.setItem('user', user.email);
               encontrado = true;
+              refresh();
             }
           });
         }
@@ -76,6 +100,7 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('tipo','admin');
               localStorage.setItem('user', user.email);
               encontrado = true;
+              refresh();
             }
           });
         }
@@ -93,6 +118,7 @@ export class LoginComponent implements OnInit {
     }
     else{
       alert("Mal credenciales");
+      this.loading = false;
     }
   }
 

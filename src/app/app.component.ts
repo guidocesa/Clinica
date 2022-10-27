@@ -22,12 +22,12 @@ export class AppComponent {
     
   }
 
-  logout()
+  async logout()
   {
     localStorage.removeItem("user");
     localStorage.removeItem("tipo");
+    await this.r.navigateByUrl("/login");
     window.location.reload();
-    this.r.navigateByUrl("/login");
   }
 
 }

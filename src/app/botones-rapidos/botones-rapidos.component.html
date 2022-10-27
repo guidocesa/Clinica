@@ -1,0 +1,16 @@
+<main role="main">
+    <div class="jumbotron">
+      <div class="container-md">
+        <div class="row overflow-auto" style="max-height: 300px;">
+          <table class="table table-striped" style="">
+            <tbody>
+              <tr *ngFor="let user of listaUsuarios">
+                <td class="btn btn-outline-secondary" *ngIf="user.foto" style="border-radius: 50%;"><img [src]="user.foto" class="" style="width: 50px; height: 50px; border-radius: 50%;" (click)="emitirUsuario(user)"></td>
+                <td class="btn btn-outline-secondary" *ngIf="user.foto1" style="border-radius: 50%;"><img [src]="user.foto1" class="" style="width: 50px; height: 50px; border-radius: 50%;" (click)="emitirUsuario(user)"></td>
+            </tbody>
+          </table>
+        </div>
+  
+      </div>
+    </div>
+  </main>

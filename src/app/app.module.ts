@@ -7,10 +7,10 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './Registros/register/register.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterEspecialistaComponent } from './register-especialista/register-especialista.component';
-import { RegisterPacienteComponent } from './register-paciente/register-paciente.component';
+import { RegisterEspecialistaComponent } from './Registros/register-especialista/register-especialista.component';
+import { RegisterPacienteComponent } from './Registros/register-paciente/register-paciente.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -18,11 +18,13 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { TablaUsuariosComponent } from './tabla-usuarios/tabla-usuarios.component';
-import { RegisterAdministradorComponent } from './register-administrador/register-administrador.component';
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
 import { UserNotVerifiedComponent } from './user-not-verified/user-not-verified.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterAdminComponent } from './register-admin/register-admin.component';
+import { RegisterAdminComponent } from './Registros/register-admin/register-admin.component';
+import { BotonesRapidosComponent } from './botones-rapidos/botones-rapidos.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -33,13 +35,15 @@ import { RegisterAdminComponent } from './register-admin/register-admin.componen
     RegisterEspecialistaComponent,
     RegisterPacienteComponent,
     TablaUsuariosComponent,
-    RegisterAdministradorComponent,
     PanelAdministradorComponent,
     UserNotVerifiedComponent,
-    RegisterAdminComponent
+    RegisterAdminComponent,
+    BotonesRapidosComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

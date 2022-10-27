@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FirestorageService } from  '../servicios/firestorage.service';
-import { Profesional } from '../servicios/profesional';
+import { FirestorageService } from  '../../servicios/firestorage.service';
+import { Profesional } from '../../servicios/profesional';
 
 @Component({
   selector: 'app-register-especialista',
@@ -71,6 +71,9 @@ que no se encuentre entre las posibilidades
     //aca hay que subir la foto
     console.log(pro);
     this.fs.addUser(pro, "profesionales");
+
+    
+    this.forma.reset();
   }
 
   async cambioArchivo(event : any) {

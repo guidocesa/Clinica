@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirestorageService } from '../servicios/firestorage.service';
-import { Paciente } from '../servicios/paciente';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Admin } from '../../servicios/admin';
+import { FirestorageService } from '../../servicios/firestorage.service';
 
 @Component({
-  selector: 'app-register-paciente',
-  templateUrl: './register-paciente.component.html',
-  styleUrls: ['./register-paciente.component.scss']
+  selector: 'app-register-admin',
+  templateUrl: './register-admin.component.html',
+  styleUrls: ['./register-admin.component.scss']
 })
-export class RegisterPacienteComponent implements OnInit {
-
+export class RegisterAdminComponent implements OnInit {
 
   public forma!: FormGroup;
-  foto:string[] = [];
-  foto2 = '';
+  foto = '';
 
   public constructor(private fb: FormBuilder, private fs: FirestorageService) {}
 
@@ -23,62 +21,59 @@ export class RegisterPacienteComponent implements OnInit {
 ■ Apellido
 ■ Edad
 ■ DNI
-■ Obra Social
+■ Especialidad
+● En este caso se le deberá dar la posibilidad de elegir o agregar alguna
+que no se encuentre entre las posibilidades
+
 ■ Mail
 ■ Password
-■ 2 imágenes para su perfil.*/
+■ Imagen de perfil*/
 
     this.forma = this.fb.group({
       'nombre': ['', [Validators.required, this.spacesValidator]],
       'apellido': ['', Validators.required],
-      'obraSocial': ['', Validators.required],
       'edad': ['', [Validators.required, Validators.min(18), Validators.max(99)]],
-      'dni': ['', [Validators.required, Validators.min(1000000), Validators.max(100000000)]],
+      'dni': ['', [Validators.required, Validators.min(1000000), Validators.max(99999999)]],
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', Validators.required],
       'password2': ['', Validators.required],
-      'foto1': ['', Validators.required],
-      'foto2': ['', Validators.required]
+      'foto': ['', Validators.required]
     });
 
   }
 
   public aceptar(): void {
-    var pac : Paciente = {
+    let admin:Admin = {
       nombre: '',
       apellido: '',
       edad: '',
       dni: '',
-      obraSocial: '',
-      email: '',
+      email: undefined,
       password: '',
-      foto1: '',
-      foto2: ''
-    }
-    var aux = this.forma.getRawValue();
-    console.log(this.forma.getRawValue());
-
-    pac.apellido = aux.apellido;
-    pac.nombre = aux.nombre;
-    pac.edad = aux.edad;
-    pac.dni = aux.dni;
-    pac.obraSocial = aux.obraSocial;
-    pac.email = aux.email;
-    pac.password = aux.password;
-    pac.foto1 = this.foto[0];
-    pac.foto2 = this.foto[1];
-    this.fs.addUser(pac, "pacientes");
-
+      foto: '',
+    };
+    admin.nombre =  this.forma.get('nombre')?.value;
+    admin.apellido =  this.forma.get('apellido')?.value;
+    admin.edad =  this.forma.get('edad')?.value;
+    admin.dni =  this.forma.get('dni')?.value;
+    admin.foto = this.foto;
+    admin.email =  this.forma.get('email')?.value;
+    admin.password =  this.forma.get('password')?.value;
+    //aca hay que subir la foto
+    console.log(admin);
+    this.fs.addUser(admin, "administradores");
+    
+    this.forma.reset('');
   }
 
-  async cambioArchivo(event : any, i:number) {
+  async cambioArchivo(event : any) {
     if (event.target.files.length > 0) {        
       let nombreArchivo = event.target.files[0].name;    
       let tarea = await this.fs.tareaCloudStorage(nombreArchivo,event.target.files[0]);    
       let referencia = this.fs.referenciaCloudStorage(nombreArchivo);
       console.log(tarea);
       referencia.getDownloadURL().subscribe( x => 
-        this.foto[i] = x
+        this.foto = x
       )
     }
   }
@@ -92,4 +87,5 @@ export class RegisterPacienteComponent implements OnInit {
       ? { containsSpaces: true }
       : null; 
   }
+
 }

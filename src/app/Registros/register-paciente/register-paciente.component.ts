@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Usuario } from 'src/app/servicios/usuario';
 import { FirestorageService } from '../../servicios/firestorage.service';
 import { Paciente } from '../../servicios/paciente';
 
@@ -44,17 +45,7 @@ export class RegisterPacienteComponent implements OnInit {
   }
 
   public aceptar(): void {
-    var pac : Paciente = {
-      nombre: '',
-      apellido: '',
-      edad: '',
-      dni: '',
-      obraSocial: '',
-      email: '',
-      password: '',
-      foto1: '',
-      foto2: ''
-    }
+    var pac = new Usuario();
     var aux = this.forma.getRawValue();
     console.log(this.forma.getRawValue());
 
@@ -63,10 +54,11 @@ export class RegisterPacienteComponent implements OnInit {
     pac.edad = aux.edad;
     pac.dni = aux.dni;
     pac.obraSocial = aux.obraSocial;
-    pac.email = aux.email;
+    pac.mail = aux.email;
     pac.password = aux.password;
-    pac.foto1 = this.foto[0];
-    pac.foto2 = this.foto[1];
+    pac.imagen1Url = this.foto[0];
+    pac.imagen2Url = this.foto[1];
+    pac.perfil = 'paciente';
     this.fs.addUser(pac, "pacientes");
 
     this.forma.reset();

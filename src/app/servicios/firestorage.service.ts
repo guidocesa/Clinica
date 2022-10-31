@@ -3,7 +3,9 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireStorage } from '@angular/fire/compat/storage'
 import { IdTokenResult, User } from '@angular/fire/auth';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { Usuario } from './usuario';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ import { map } from 'rxjs';
 export class FirestorageService {
 
 
-  constructor(private afs:AngularFirestore, private afa: AngularFireAuth, private storage: AngularFireStorage){
+  constructor(private afs:AngularFirestore, private afa: AngularFireAuth, private storage: AngularFireStorage, private usuariosService: UsuarioService){
   }
 
 
@@ -21,18 +23,21 @@ export class FirestorageService {
     return userCollection.valueChanges();
   }
 
-  getUserSegunEmail(email:string, db:string)
+  getUserSegunEmail(email:string, db:string) : Observable<Usuario[]>
   {
     console.log(email);
     var user:any;
-    return this.afs.collection(db, ref => ref.where('email', '==', email)).valueChanges();
+    return this.afs.collection<Usuario>(db, ref => ref.where('email', '==', email)).valueChanges();
   }
 
-  async addUser(user:any, db:string)
+  async addUser(user:Usuario, db:string)
   {
-    var userCollection = this.afs.collection(db);
+    var userCollection = this.afs.collection('usuarios');
     await userCollection.add(user);
-    var userNuevo = this.afa.createUserWithEmailAndPassword(user.email, user.password).then( (result) => {
+    var userNuevo = this.afa.createUserWithEmailAndPassword(user.mail, user.password).then( (result) => {
+      user.uid = result.user?.uid!;
+      this.usuariosService.agregarUsuario(user);
+
       this.afa.currentUser.then( (u: any) => u.sendEmailVerification());
       return result
     })
@@ -61,6 +66,10 @@ export class FirestorageService {
   //Referencia del archivo
   public referenciaCloudStorage(nombreArchivo: string) {
     return this.storage.ref(nombreArchivo);
+  }
+
+  getEspecialidades() {
+    return this.afs.collection('especialidades').snapshotChanges();
   }
 
   

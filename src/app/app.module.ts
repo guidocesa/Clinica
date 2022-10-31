@@ -25,6 +25,10 @@ import { RegisterAdminComponent } from './Registros/register-admin/register-admi
 import { BotonesRapidosComponent } from './botones-rapidos/botones-rapidos.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MisTurnosComponent } from './mis-turnos/mis-turnos.component';
+import { ListaTurnosComponent } from './lista-turnos/lista-turnos.component';
+import { TablaTurnosComponent } from './tabla-turnos/tabla-turnos.component';
+import { PedirTurnoComponent } from './pedir-turno/pedir-turno.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     UserNotVerifiedComponent,
     RegisterAdminComponent,
     BotonesRapidosComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    MisTurnosComponent,
+    ListaTurnosComponent,
+    TablaTurnosComponent,
+    PedirTurnoComponent
   ],
   imports: [
     BrowserModule,

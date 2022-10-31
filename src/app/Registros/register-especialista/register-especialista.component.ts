@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Usuario } from 'src/app/servicios/usuario';
 import { FirestorageService } from  '../../servicios/firestorage.service';
 import { Profesional } from '../../servicios/profesional';
 
@@ -45,29 +46,22 @@ que no se encuentre entre las posibilidades
   }
 
   public aceptar(): void {
-    let pro:Profesional = {
-      nombre: '',
-      apellido: '',
-      edad: '',
-      dni: '',
-      especialidad: undefined,
-      email: undefined,
-      password: '',
-      foto: '',
-      verificada: false
-    };
+    let pro= new Usuario();
     pro.nombre =  this.forma.get('nombre')?.value;
     pro.apellido =  this.forma.get('apellido')?.value;
     pro.edad =  this.forma.get('edad')?.value;
     pro.dni =  this.forma.get('dni')?.value;
     pro.especialidad =  this.forma.get('especialidad')?.value;
-    pro.foto = this.foto;
+    pro.especialidades.push({descripcion:this.forma.get('especialidad')?.value});
+    pro.imagen1Url = this.foto;
     if(this.forma.get('especialidad')?.value == 'otra')
     {
       pro.especialidad = this.forma.get('especialidadNueva')?.value;
+      pro.especialidades.push({descripcion: this.forma.get('especialidad')?.value});
     }
-    pro.email =  this.forma.get('email')?.value;
+    pro.mail =  this.forma.get('email')?.value;
     pro.password =  this.forma.get('password')?.value;
+    pro.perfil = 'especialista';
     //aca hay que subir la foto
     console.log(pro);
     this.fs.addUser(pro, "profesionales");

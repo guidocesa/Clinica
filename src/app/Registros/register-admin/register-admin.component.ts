@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { Usuario } from 'src/app/servicios/usuario';
 import { Admin } from '../../servicios/admin';
 import { FirestorageService } from '../../servicios/firestorage.service';
 
@@ -13,7 +15,7 @@ export class RegisterAdminComponent implements OnInit {
   public forma!: FormGroup;
   foto = '';
 
-  public constructor(private fb: FormBuilder, private fs: FirestorageService) {}
+  public constructor(private fb: FormBuilder, private fs: FirestorageService, private as : AuthService) {}
 
   ngOnInit(): void {
 
@@ -43,25 +45,37 @@ que no se encuentre entre las posibilidades
   }
 
   public aceptar(): void {
-    let admin:Admin = {
+    let admin:Usuario = {
       nombre: '',
       apellido: '',
-      edad: '',
-      dni: '',
-      email: undefined,
+      edad: 0,
+      dni: 0,
+      mail: '',
       password: '',
-      foto: '',
+      imagen1Url: '',
+      id: '',
+      obraSocial: '',
+      especialidades: [],
+      especialidad: '',
+      imagen1: '',
+      imagen2: '',
+      imagen2Url: '',
+      uid: '',
+      rol: '',
+      perfil: '',
+      verificado: false,
+      createdAt: ''
     };
     admin.nombre =  this.forma.get('nombre')?.value;
     admin.apellido =  this.forma.get('apellido')?.value;
     admin.edad =  this.forma.get('edad')?.value;
     admin.dni =  this.forma.get('dni')?.value;
-    admin.foto = this.foto;
-    admin.email =  this.forma.get('email')?.value;
+    admin.imagen1Url = this.foto;
+    admin.mail =  this.forma.get('email')?.value;
     admin.password =  this.forma.get('password')?.value;
     //aca hay que subir la foto
     console.log(admin);
-    this.fs.addUser(admin, "administradores");
+    this.as.registrar(admin);
     
     this.forma.reset('');
   }

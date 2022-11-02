@@ -7,6 +7,7 @@ import { Usuario } from './usuario';
 })
 export class UsuarioService {
   private usuariosCollection: AngularFirestoreCollection<Usuario>;
+  public usuario!: Usuario;
   //private usuarios: Observable<Usuario[]>;
 
   constructor(private firestore: AngularFirestore) { 

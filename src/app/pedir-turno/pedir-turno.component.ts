@@ -9,13 +9,12 @@ import { TurnosService } from '../servicios/turnos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from 'src/app/modules/shared/components/dialog/dialog.component';
 
 
 @Component({
   selector: 'app-pedir-turno',
   templateUrl: './pedir-turno.component.html',
-  styleUrls: ['./pedir-turno.component.css']
+  styleUrls: ['./pedir-turno.component.scss']
 })
 export class PedirTurnoComponent implements OnInit {
   @Output() cancelarEvent: EventEmitter<any> = new EventEmitter();

@@ -12,6 +12,8 @@ import { UsuarioService } from './usuario.service';
 })
 export class FirestorageService {
 
+  
+
 
   constructor(private afs:AngularFirestore, private afa: AngularFireAuth, private storage: AngularFireStorage, private usuariosService: UsuarioService){
   }
@@ -26,8 +28,7 @@ export class FirestorageService {
   getUserSegunEmail(email:string, db:string) : Observable<Usuario[]>
   {
     console.log(email);
-    var user:any;
-    return this.afs.collection<Usuario>(db, ref => ref.where('email', '==', email)).valueChanges();
+    return this.afs.collection<Usuario>('usuarios', ref => ref.where('email', '==', email)).valueChanges();
   }
 
   async addUser(user:Usuario, db:string)

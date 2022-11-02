@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { Usuario } from 'src/app/servicios/usuario';
 import { FirestorageService } from  '../../servicios/firestorage.service';
 import { Profesional } from '../../servicios/profesional';
@@ -15,7 +16,7 @@ export class RegisterEspecialistaComponent implements OnInit {
   public forma!: FormGroup;
   foto = '';
 
-  public constructor(private fb: FormBuilder, private fs: FirestorageService) {}
+  public constructor(private fb: FormBuilder, private fs: FirestorageService, private as : AuthService) {}
 
   ngOnInit(): void {
 
@@ -64,7 +65,7 @@ que no se encuentre entre las posibilidades
     pro.perfil = 'especialista';
     //aca hay que subir la foto
     console.log(pro);
-    this.fs.addUser(pro, "profesionales");
+    this.as.registrar(pro);
 
     
     this.forma.reset();

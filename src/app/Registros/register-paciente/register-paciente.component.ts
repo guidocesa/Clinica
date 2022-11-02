@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { Usuario } from 'src/app/servicios/usuario';
 import { FirestorageService } from '../../servicios/firestorage.service';
 import { Paciente } from '../../servicios/paciente';
@@ -16,7 +17,7 @@ export class RegisterPacienteComponent implements OnInit {
   foto:string[] = [];
   foto2 = '';
 
-  public constructor(private fb: FormBuilder, private fs: FirestorageService) {}
+  public constructor(private fb: FormBuilder, private fs: FirestorageService, private as : AuthService) {}
 
   ngOnInit(): void {
 
@@ -59,7 +60,8 @@ export class RegisterPacienteComponent implements OnInit {
     pac.imagen1Url = this.foto[0];
     pac.imagen2Url = this.foto[1];
     pac.perfil = 'paciente';
-    this.fs.addUser(pac, "pacientes");
+    console.log(pac);
+    this.as.registrar(pac);
 
     this.forma.reset();
 

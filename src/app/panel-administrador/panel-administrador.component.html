@@ -1,10 +1,10 @@
 <div class="containerGeneral">
-  <select #tipo (change)="recargarTabla(tipo.value)" type="text" placeholder="Seleccione los Usuarios a Ver" style="font-size: 20px; margin-bottom: 20px;">
-    <option value="profesionales">Profesionales</option>
-    <option value="pacientes">Pacientes</option>
-    <option value="administradores">Administradores</option>
+  <select #tipo (change)="filtro = tipo.value" type="text" placeholder="Seleccione los Usuarios a Ver" style="font-size: 20px; margin-bottom: 20px;">
+    <option value="especialista">Profesionales</option>
+    <option value="paciente">Pacientes</option>
+    <option value="administrador">Administradores</option>
   </select>
-  <app-tabla-usuarios (habilitarProfesionalEmit)="habilitarProfesional($event)" [listaItems]="profesionales"></app-tabla-usuarios>
+  <app-tabla-usuarios (habilitarProfesionalEmit)="habilitarProfesional($event)" [listaItems]="usuarios" [filtro]="filtro"></app-tabla-usuarios>
   <button (click)="openDialogBox()" class="btn btn-secondary btn-lg">Agregar Administrador</button>
   <app-spinner style="position: absolute;" *ngIf="loading" [diameter]="100"></app-spinner>
 </div>

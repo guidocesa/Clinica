@@ -73,28 +73,12 @@ forma.controls.email.touched">
 El email no tiene el formato correcto
 </small>
 </div>
-<div class="col-md-6 mb-1">
-    <label for="especialidad" class="form-label">Especialidad</label>
-    <select #especialidad type="text" class="form-control" id="especialidad" placeholder="Seleccione Especialidad" formControlName="especialidad">
-      <option value="otorrino">Otorrino</option>
-      <option value="dentista">Dentista</option>
-      <option value="cardiologo">Cardiologo</option>
-      <option value="traumatologo">Traumatologo</option>
-      <option value="otra">Otra</option>
-    </select>
-    <small class="invalid"
-      *ngIf="forma.controls.especialidad.errors?.required &&
-      forma.controls.especialidad.touched">
-      La especialidad es requerida
-    </small>
-</div>
-<div *ngIf="especialidad.value == 'otra'" class="col-md-12 mb-1">
-  <label for="especialidadNueva" class="form-label">Especialidad Nueva</label>
-  <input type="text" class="form-control" id="especialidadNueva" placeholder="Ingrese Especialidad" formControlName="especialidadNueva">
-  <small class="invalid"
-    *ngIf="forma.controls.especialidadNueva.errors?.required &&
-    forma.controls.especialidadNueva.touched">
-    La especialidad es requerida
+<div class="col-md-6 mb-3">
+  <label for="especialidad" class="form-label">Especialidad</label>
+  <input type="text" placeholder="Ingrese especialidad" id="especialidad" class="form-control" matInput
+   id="especialidad" formControlName="especialidad">
+  <small *ngIf="forma.controls.especialidad.errors?.required && forma.controls.especialidad.touched" id="especialidad" class="invalid">
+    Este campo es requerido
   </small>
 </div>
 <div class="col-md-6 mb-1">
@@ -124,6 +108,16 @@ El email no tiene el formato correcto
             La foto son requeridas
           </small>
         </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 d-grid gap-2">
+        <re-captcha style="margin-left: 70px; margin-bottom: 10px;" id="captcha" name="captcha" formControlName="captcha"></re-captcha>
+        <small class="invalid"
+        *ngIf="forma.controls.captcha.errors?.required &&
+        forma.controls.captcha.touched">
+        Las fotos son requeridas
+      </small>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-12 d-grid gap-2">

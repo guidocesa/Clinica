@@ -73,6 +73,7 @@ que no se encuentre entre las posibilidades
     admin.imagen1Url = this.foto;
     admin.mail =  this.forma.get('email')?.value;
     admin.password =  this.forma.get('password')?.value;
+    admin.perfil = 'administrador';
     //aca hay que subir la foto
     console.log(admin);
     this.as.registrar(admin);

@@ -9,6 +9,7 @@ import { FirestorageService } from '../servicios/firestorage.service';
 export class TablaUsuariosComponent implements OnInit {
 
   @Input() listaItems: any;
+  @Input() filtro!: string;
   @Input() perfil: any;
   @Output() habilitarProfesionalEmit: EventEmitter<any> = new EventEmitter();
 

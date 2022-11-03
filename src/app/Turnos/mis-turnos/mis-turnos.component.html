@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-header pb-0">
+      <div class="row">
+        <div class="col-lg-12">
+          <h2>Mis Turnos</h2>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <input class="form-control" type="search" [(ngModel)]="filtro" (ngModelChange)="filtroTurnos()" placeholder="Buscar..." aria-label="Search">
+      <div class="table-responsive">
+        <table class="table align-items-center mb-0">
+          <thead>
+            <tr>
+              <th *ngIf="perfil == 'admin' || perfil == 'especialista'" class="text-center text-uppercase text-secondary font-weight-bolder">Paciente</th>
+              <th class="text-center text-uppercase text-secondary font-weight-bolder">Especialidad</th>
+              <th *ngIf="perfil == 'admin' || perfil == 'paciente'" class="text-center text-uppercase text-secondary font-weight-bolder ps-2">Especialista</th>
+              <th class="text-center text-uppercase text-secondary font-weight-bolder">Fecha</th>
+              <th class="text-center text-uppercase text-secondary font-weight-bolder">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="listaTurnosFiltrados.length == 0">
+              <td>No hay turnos para mostrar</td>
+            </tr>
+            <tr *ngFor="let turno of listaTurnosFiltrados" class="row-turno" (click)="seleccionarTurno(turno)">
+              <td *ngIf="perfil == 'admin' || perfil == 'especialista'">
+                <div>
+                  <div class="text-center">
+                    <span>{{turno.paciente}}</span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  {{turno.especialidad}}
+                </div>
+              </td>
+              <td class="text-center" *ngIf="perfil == 'admin' || perfil == 'paciente'">
+                <span>{{turno.especialista}}</span>
+              </td>
+              <td>
+                <div>
+                  <div>
+                    <div class="text-center">
+                      <span>{{turno.fechaHora | date:'dd/MM/yy H:mm'}}</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                {{turno.estado}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>

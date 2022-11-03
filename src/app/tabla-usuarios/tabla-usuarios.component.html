@@ -7,19 +7,20 @@
                 {{column}}
             </th>
             <tr *ngFor = "let item of listaItems">
-                <td>
-                    {{item.dni}}
-                </td>
-                <td>
-                    {{item.nombre + " " + item.apellido}}
-                </td>
-                <td>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                </td>
-                <td>
-                    <button *ngIf="item.verificada === false" type="button" class="btn btn-sm btn-outline-secondary" (click)="habilitarProfesional(item.email)">Habilitar</button>
-                </td>
-        
+
+                    <td>
+                        {{item.dni}}
+                    </td>
+                    <td>
+                        {{item.nombre + " " + item.apellido}}
+                    </td>
+                    <td>
+                        {{item.perfil}}<!-- <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button> -->
+                    </td>
+                    <td>
+                        <button *ngIf="item.perfil == 'especialista' && item.verificado === false " type="button" class="btn btn-sm btn-outline-secondary" (click)="habilitarProfesional(item.mail)">Habilitar</button>
+                    </td>
+                    
             </tr>
           </table>
       </div>

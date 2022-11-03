@@ -126,6 +126,16 @@
       </div>
       <div class="row">
         <div class="col-md-12 d-grid gap-2">
+          <re-captcha style="margin-left: 70px; margin-bottom: 10px;" id="captcha" name="captcha" formControlName="captcha"></re-captcha>
+          <small class="invalid"
+          *ngIf="forma.controls.captcha.errors?.required &&
+          forma.controls.captcha.touched">
+          Las fotos son requeridas
+        </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-grid gap-2">
           <button type="submit" 
           class="btn btn-primary btn-block" 
           [disabled]="forma.invalid">

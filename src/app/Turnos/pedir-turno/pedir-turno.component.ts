@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Turno } from '../servicios/turno';
-import { Usuario } from '../servicios/usuario';
-import { AuthService } from '../servicios/auth.service';
-import { FirestorageService } from '../servicios/firestorage.service';
-import { UsuarioService } from '../servicios/usuario.service';
-import { TurnoStatus } from '../servicios/turno-status'; 
-import { TurnosService } from '../servicios/turnos.service';
+import { Turno } from '../../servicios/turno';
+import { Usuario } from '../../servicios/usuario';
+import { AuthService } from '../../servicios/auth.service';
+import { FirestorageService } from '../../servicios/firestorage.service';
+import { UsuarioService } from '../../servicios/usuario.service';
+import { TurnoStatus } from '../../servicios/turno-status'; 
+import { TurnosService } from '../../servicios/turnos.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
@@ -201,6 +201,8 @@ export class PedirTurnoComponent implements OnInit {
         }
       });
 
+      console.log(this.listaHoras);
+
       this.turnosService.getTurnosEspecialidadEspecialistaDia(this.especialidadElegida.descripcion, this.especialistaElegido.uid, dia)
         .subscribe((turnos)=>{
           this.listaHorasPosibles = [];          
@@ -214,45 +216,6 @@ export class PedirTurnoComponent implements OnInit {
             return libre;
           })
         });
-      // this.turnosService.getTurnosEspecialidadEspecialistaDia(this.especialidadElegida.descripcion, this.especialistaElegido.uid, dia)
-      //   .subscribe((turnos)=>{
-      //     this.listaHorasPosibles = [];
-      //     console.log(turnos);
-      //     console.log(this.listaHorasPosibles);
-          
-      //     this.listaHoras.forEach((hora)=>{
-      //       console.log(hora);
-      //       turnos.forEach((turno)=>{
-      //         //console.log(turno.fechaHora.seconds * 1000);
-      //         // if(hora.getTime() == turno.fechaHora.seconds * 1000){
-      //         //   console.log('iguales');
-      //         // }
-      //         if(hora.getTime() != (turno.fechaHora.seconds * 1000)){
-      //           this.listaHorasPosibles.push(hora);
-      //         }
-      //       });
-      //     })
-      //   });
-
-        
-      // this.turnosService.getTurnosEspecialidadEspecialistaDia(this.especialidadElegida.descripcion, this.especialistaElegido.uid, dia).pipe(
-      //   map((actions) => {
-      //     actions.map(a => {
-      //       const turno = a.payload.doc.data();
-      //       turno.id = a.payload.doc.id;
-      //       let ts = new Timestamp(turno.fechaHora.seconds, turno.fechaHora.nanoseconds);
-      //       turno.fechaHora = ts.toDate();
-      //       this.listaTurnosDb.push(turno);
-      //     });
-      //   })
-      // ).subscribe((subs)=>{
-      //   this.listaHoras.forEach((hora)=>{
-      //     console.log(hora);
-      //     this.listaTurnosDb.forEach((turno)=>{
-      //       console.log(turno);
-      //     });
-      //   })
-      // });
     }
   }
 

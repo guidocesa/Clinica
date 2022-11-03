@@ -1,0 +1,32 @@
+<div class="container mt-5" id="pdf" *ngIf="usuario; else nada;">    
+    <div class="row mt-5 pt-5" *ngIf="usuario">
+        <div class="col-md-4 flex">
+            <img [src]="usuario.imagen1Url" alt="" class="bd-placeholder-img rounded-circle" width="140" height="140">
+            <img [src]="usuario.imagen2Url" *ngIf="usuario.perfil == 'paciente'" alt="" class="bd-placeholder-img rounded-circle" width="140" height="140">
+        </div>
+        <div class="col-md-8 flex">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h1 class="card-title " style="text-transform: uppercase;">{{usuario.perfil}}</h1>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{usuario.nombre}} {{usuario.apellido}}</li>
+                    <li class="list-group-item">{{usuario.mail}}</li>
+                    <li class="list-group-item" *ngIf="usuario.perfil == 'paciente'">Obra social: {{usuario.obraSocial}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr class="mt-2 mb-2">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <app-mis-horarios *ngIf="usuario.perfil == 'especialista'"></app-mis-horarios>
+        </div>
+    </div>
+    
+</div>
+<ng-template #nada>
+    Ningún usuario logueado
+</ng-template>
+

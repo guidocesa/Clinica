@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TablaTurnosComponent } from './tabla-turnos.component';
+import { MenuTurnosComponent } from './menu-turnos.component';
 
-describe('TablaTurnosComponent', () => {
-  let component: TablaTurnosComponent;
-  let fixture: ComponentFixture<TablaTurnosComponent>;
+describe('MenuTurnosComponent', () => {
+  let component: MenuTurnosComponent;
+  let fixture: ComponentFixture<MenuTurnosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TablaTurnosComponent ]
+      declarations: [ MenuTurnosComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TablaTurnosComponent);
+    fixture = TestBed.createComponent(MenuTurnosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

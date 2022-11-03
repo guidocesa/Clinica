@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Usuario } from 'src/app/servicios/usuario';
 import { FirestorageService } from  '../../servicios/firestorage.service';
-import { Profesional } from '../../servicios/profesional';
+
 
 @Component({
   selector: 'app-register-especialista',
@@ -15,8 +15,12 @@ export class RegisterEspecialistaComponent implements OnInit {
 
   public forma!: FormGroup;
   foto = '';
+  listaEspecialidades: string[];
 
-  public constructor(private fb: FormBuilder, private fs: FirestorageService, private as : AuthService) {}
+  public constructor(private fb: FormBuilder, private fs: FirestorageService, private as : AuthService) {
+    this.listaEspecialidades = this.fs.listaEspecialidades;
+    console.log(this.listaEspecialidades);
+  }
 
   ngOnInit(): void {
 
@@ -41,18 +45,26 @@ que no se encuentre entre las posibilidades
       'email': ['', [Validators.required, Validators.email]],
       'password': ['', Validators.required],
       'password2': ['', Validators.required],
-      'foto': ['', Validators.required]
+      'foto': ['', Validators.required],
+      'captcha': ['', Validators.required]
     });
 
   }
 
   public aceptar(): void {
     let pro= new Usuario();
+
+    let especilidadSeleccionada = this.forma.get('especialidad')?.value;
+
+    if(!this.listaEspecialidades.includes(especilidadSeleccionada)){
+      this.fs.agregarEspecialidad(especilidadSeleccionada);
+      this.listaEspecialidades.push(especilidadSeleccionada);
+    }
+
     pro.nombre =  this.forma.get('nombre')?.value;
     pro.apellido =  this.forma.get('apellido')?.value;
     pro.edad =  this.forma.get('edad')?.value;
     pro.dni =  this.forma.get('dni')?.value;
-    pro.especialidad =  this.forma.get('especialidad')?.value;
     pro.especialidades.push({descripcion:this.forma.get('especialidad')?.value});
     pro.imagen1Url = this.foto;
     if(this.forma.get('especialidad')?.value == 'otra')

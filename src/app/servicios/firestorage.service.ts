@@ -11,11 +11,17 @@ import { UsuarioService } from './usuario.service';
   providedIn: 'root'
 })
 export class FirestorageService {
-
+  listaEspecialidades: string[] = [];
   
 
 
   constructor(private afs:AngularFirestore, private afa: AngularFireAuth, private storage: AngularFireStorage, private usuariosService: UsuarioService){
+    let especialidadesSubscripcion = this.getEspecialidades().subscribe((especialidades: any) => {
+      for (let index = 0; index < especialidades.length; index++) {
+        this.listaEspecialidades.push(especialidades[index].payload.doc.data().descripcion);
+      }
+      especialidadesSubscripcion.unsubscribe();
+    });
   }
 
 
@@ -23,6 +29,12 @@ export class FirestorageService {
   {
     var userCollection = this.afs.collection(db);
     return userCollection.valueChanges();
+  }
+
+  agregarEspecialidad(especialidad: string) {
+    this.afs.collection('especialidades').add({
+      descripcion: especialidad
+    });
   }
 
   getUserSegunEmail(email:string, db:string) : Observable<Usuario[]>
@@ -47,14 +59,14 @@ export class FirestorageService {
 
   verificarProfesional(email:string)
   {
-    let doc = this.afs.collection('profesionales', ref => ref.where('email', '==', email));
+    let doc = this.afs.collection('usuarios', ref => ref.where('mail', '==', email));
     doc.snapshotChanges().pipe(
       map(actions => actions.map(a => {                                                      
         const data:any = a.payload.doc.data();
         const id = a.payload.doc.id;
         return id;
       }))).subscribe((id: any) => {
-        this.afs.doc(`profesionales/${id[0]}`).update({verificada: true});
+        this.afs.doc(`usuarios/${id[0]}`).update({verificado: true});
       })
   }
 

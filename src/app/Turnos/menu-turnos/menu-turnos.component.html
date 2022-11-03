@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <h1>Gestión de Turnos</h1>
+    <div class="container" *ngIf="!pedirTurno; else solicitar;">
+        <div class="row" *ngIf="perfil != 'especialista'">
+            <div class="col-lg-4">
+                <button type="button" class="btn btn-primary btn-lg" (click)="pedirTurno = true">Solicitar Turno</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div>
+                    <app-mis-turnos (turnoElegidoEvent)="recibirTurnoElegido($event)"></app-mis-turnos>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <app-detalle-turno [turno]="turnoElegido"></app-detalle-turno>
+            </div>
+        </div>
+    </div>
+    <ng-template #solicitar>
+        <app-pedir-turno (cancelarEvent)="pedirTurno = false"></app-pedir-turno>
+    </ng-template>
+</div>

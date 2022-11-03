@@ -10,15 +10,16 @@ import { RegisterAdminComponent } from '../Registros/register-admin/register-adm
 })
 export class PanelAdministradorComponent implements OnInit {
 
-  profesionales:any;
+  usuarios:any;
   loading = false;
+  filtro:string = 'paciente';
 
   constructor(private fs: FirestorageService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loading = true;
-    this.fs.getlistado('profesionales').forEach( (x:any) => {
-      this.profesionales = x;
+    this.fs.getlistado('usuarios').forEach( (x:any) => {
+      this.usuarios = x;
       this.loading = false;
     })
   }
@@ -29,9 +30,9 @@ export class PanelAdministradorComponent implements OnInit {
   recargarTabla(tipo:string)
   {
     this.loading = true;
-    console.log(this.profesionales);
+    console.log(this.usuarios);
     this.fs.getlistado(tipo).forEach( (x:any) => {
-      this.profesionales = x;
+      this.usuarios = x;
       this.loading = false;
     })
   }

@@ -1,0 +1,49 @@
+<div class="container mt-4">
+    <h2>Mis Dias de Atencion</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-4 mb-3 mt-3">
+            <h2>Especialidades</h2>
+            <div class="list-group">
+                <a *ngFor="let item of usuario!.especialidades" class="list-group-item list-group-item-action active" aria-current="true" (click)="elegirEspecialidad(item)">
+                    {{item.descripcion}}
+                </a>
+            </div>
+        </div>
+        <div class="col-md-8 mb-3 mt-3">
+            <ng-container *ngIf="especialidadElegida">
+                <h2 class="especialidad">{{especialidadElegida.descripcion}}</h2>
+                <h3>Seleccione los dias laborales</h3>
+                <div>
+                    <label><input type="checkbox" [(ngModel)]="dias['Lunes']">Lunes</label>
+                    <label><input type="checkbox" [(ngModel)]="dias['Martes']">Martes</label>
+                    <label><input type="checkbox" [(ngModel)]="dias['Miercoles']">Miercoles</label>
+                    <label><input type="checkbox" [(ngModel)]="dias['Jueves']">Jueves</label>
+                    <label><input type="checkbox" [(ngModel)]="dias['Viernes']">Viernes</label>
+                </div>
+                <h3>Horarios</h3>
+                <div>
+                    <label for="select-desde">Desde</label>
+                    <select [(ngModel)]="desde" id="select-desde">
+                        <option *ngFor="let horario of horarios" [value]="horario">{{horario}}</option>
+                    </select>
+                    <label for="selec-hasta">Hasta</label>
+                    <select [(ngModel)]="hasta" id="select-hasta">
+                        <option *ngFor="let horario of horarios" [value]="horario">{{horario}}</option>
+                    </select>
+                </div>
+                <label for="select-duracion">Duracion de cada turno</label>
+                <select [(ngModel)]="duracion">
+                    <option [value]="30">30</option>
+                    <option [value]="60">60</option>
+                </select>
+                <div class="mt-2" *ngIf="!loading; else spinner">
+                    <button type="button" class="btn btn-secondary" (click)="guardar()">Guardar</button>
+                </div>
+                <ng-template #spinner>
+                    <app-spinner [diameter]="50"></app-spinner>
+                </ng-template>
+            </ng-container>
+        </div>    
+    </div>
+</div>

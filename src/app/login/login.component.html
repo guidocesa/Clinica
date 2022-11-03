@@ -4,13 +4,7 @@
 			<input id="email" type="email" #userName class="formControl" placeholder="Email"  required/>
 			<input id="password" type="password" #userPassword class="formControl" placeholder="Password"  />
 			<button (click)="login( userName.value, userPassword.value )">Iniciar</button>
-			<select (change)="cambioSeleccion(tipoUsuario.value)" #tipoUsuario type="text" class="form-control" id="especialidad" placeholder="Seleccione Tipo Usuario" style="margin-bottom: 20px;">
-				<option disabled selected value>Seleccione Tipo Usuario</option>
-				<option value="pacientes">Pacientes</option>
-				<option value="profesionales">Profesionales</option>
-				<option value="administradores">Administradores</option>
-			</select>
-			<app-botones-rapidos [tipoUsuarios]="seleccion" (usuarioEmitido)="completarCampos($event)"></app-botones-rapidos>
+			<app-botones-rapidos (usuarioEmitido)="completarCampos($event)"></app-botones-rapidos>
 			<!-- <div class="inicioRapido">
 				<button (click)="userName.value = 'guidocesa@gmail.com'; userPassword.value = '123456';">Inicio Paciente</button>
 				<button (click)="userName.value = 'profesional@gmail.com'; userPassword.value = '123456';">Inicio Profesional</button>

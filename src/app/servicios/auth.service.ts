@@ -9,7 +9,7 @@ import { UsuarioService } from './usuario.service';
   providedIn: 'root'
 })
 export class AuthService {
-  usuario: Usuario|null;
+  public usuario: Usuario|null;
   estaLogueado: boolean = false;
   public currentUserEmail:any = '';
 
@@ -25,9 +25,9 @@ export class AuthService {
   public login(usuario: Usuario){
     return new Promise<void>((resolve, reject)=>{
       this.afAuth.signInWithEmailAndPassword(usuario.mail, usuario.password).then((cred)=>{
-        // if(!cred.user?.emailVerified){
-        //   this.router.navigate(['/verificaremail']);
-        // }else{
+        if(!cred.user?.emailVerified){
+          this.router.navigate(['/usuarionoverificado']);
+        }else{
           this.currentUserEmail = usuario.mail;
           this.afStore.collection('usuarios').doc<Usuario>(cred.user!.uid).ref.get().then(doc=>{
             this.usuario = doc.data()!;
@@ -36,7 +36,7 @@ export class AuthService {
           }).catch(error => {
             reject(error);
           })
-        //}        
+        }        
       }).catch(error => {
         reject(error);
       });
@@ -47,7 +47,7 @@ export class AuthService {
     return new Promise((resolve, reject)=>{
       this.afAuth.createUserWithEmailAndPassword(usuario.mail, usuario.password).then((cred) => {
         //Envio email de verificacion
-        //cred.user?.sendEmailVerification();
+        cred.user?.sendEmailVerification();
 
         usuario.uid = cred.user?.uid!;
         
@@ -69,6 +69,7 @@ export class AuthService {
     }).catch((error)=>{
       console.log(error);
     }) ;
+    this.usuario = null;
   }
 
   logoutAndStay(): void

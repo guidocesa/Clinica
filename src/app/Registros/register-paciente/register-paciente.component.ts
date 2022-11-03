@@ -40,7 +40,8 @@ export class RegisterPacienteComponent implements OnInit {
       'password': ['', Validators.required],
       'password2': ['', Validators.required],
       'foto1': ['', Validators.required],
-      'foto2': ['', Validators.required]
+      'foto2': ['', Validators.required],
+      'captcha': ['', Validators.required]
     });
 
   }

@@ -1,25 +1,25 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FirestorageService } from '../servicios/firestorage.service';
+import { Usuario } from '../servicios/usuario';
+import { UsuarioService } from '../servicios/usuario.service';
 
 @Component({
   selector: 'app-botones-rapidos',
   templateUrl: './botones-rapidos.component.html',
   styleUrls: ['./botones-rapidos.component.scss']
 })
-export class BotonesRapidosComponent implements OnInit, OnChanges {
-
-
-  @Input() listaUsuarios: any;
-  @Input() tipoUsuarios= '';
+export class BotonesRapidosComponent implements OnInit {
+  
   @Output() usuarioEmitido: EventEmitter<any> = new EventEmitter();
 
-  constructor(private fs: FirestorageService) { }
+  lista: Usuario[] = [];
+  list: Observable<Usuario[]> | null = null;
+
+  constructor(private us: UsuarioService) { }
 
   ngOnInit(): void {
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.fs.getlistado(this.tipoUsuarios).forEach( x => this.listaUsuarios = x);
+    this.list = this.us.getUsuarios();
   }
   
   emitirUsuario(usuario : any) {

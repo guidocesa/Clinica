@@ -22,12 +22,22 @@
           <li class="nav-item">
               <a class="nav-link  active" [routerLink]="['/registro']">Registro</a>
             </li>
-            <li *ngIf="!loggedin" class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link  active"  [routerLink]="['/miperfil']" tabindex="-1" aria-disabled="true"
+              >Mi Perfil</a
+              >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  active"  [routerLink]="['/misturnos']" tabindex="-1" aria-disabled="true"
+            >Mis Turnos</a
+            >
+          </li>
+            <li class="nav-item">
                 <a class="nav-link  active"  [routerLink]="['/login']" tabindex="-1" aria-disabled="true"
                 >Login</a
                 >
             </li>
-            <li *ngIf="loggedin" class="nav-item">
+            <li class="nav-item">
               <a class="nav-link  active" href="" (click)="logout()" tabindex="-1" aria-disabled="true"
               >Logout</a
               >

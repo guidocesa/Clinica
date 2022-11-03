@@ -25,10 +25,17 @@ import { RegisterAdminComponent } from './Registros/register-admin/register-admi
 import { BotonesRapidosComponent } from './botones-rapidos/botones-rapidos.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MisTurnosComponent } from './mis-turnos/mis-turnos.component';
-import { ListaTurnosComponent } from './lista-turnos/lista-turnos.component';
-import { TablaTurnosComponent } from './tabla-turnos/tabla-turnos.component';
-import { PedirTurnoComponent } from './pedir-turno/pedir-turno.component';
+import { MisTurnosComponent } from './Turnos/mis-turnos/mis-turnos.component';
+import { PedirTurnoComponent } from './Turnos/pedir-turno/pedir-turno.component';
+import { MenuTurnosComponent } from './Turnos/menu-turnos/menu-turnos.component';
+import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
+import { MisHorariosComponent } from './mis-horarios/mis-horarios.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { DetalleTurnoComponent } from './Turnos/detalle-turno/detalle-turno.component';
+import { ReseniaDialogComponent } from './resenia-dialog/resenia-dialog.component';
+import { RecaptchaFormsModule, RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -45,9 +52,12 @@ import { PedirTurnoComponent } from './pedir-turno/pedir-turno.component';
     BotonesRapidosComponent,
     SpinnerComponent,
     MisTurnosComponent,
-    ListaTurnosComponent,
-    TablaTurnosComponent,
-    PedirTurnoComponent
+    PedirTurnoComponent,
+    MenuTurnosComponent,
+    MiPerfilComponent,
+    MisHorariosComponent,
+    DetalleTurnoComponent,
+    ReseniaDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +70,18 @@ import { PedirTurnoComponent } from './pedir-turno/pedir-turno.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
+    MatAutocompleteModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
-  providers: [ AngularFireAuth, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, { provide: MatDialogRef, useValue: {}}],
+  providers: [ AngularFireAuth, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, { provide: MatDialogRef, useValue: {}}, DatePipe, {
+    provide: RECAPTCHA_SETTINGS,
+    useValue: {
+      siteKey: environment.recaptcha.siteKey,
+    } as RecaptchaSettings,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

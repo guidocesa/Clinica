@@ -1,0 +1,67 @@
+<div *ngIf="turno">
+    <div class="card" style="width: 90%;">
+        <div class="card-body">
+            <h1 class="card-title">Información del Turno</h1>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item estado">Estado: <span style="font-weight: bold">{{turno.estado}}</span></li>
+            <li class="list-group-item">Especialidad: <span style="font-weight: bold">{{turno.especialidad}}</span></li>
+            <li class="list-group-item" *ngIf="perfil == 'admin' || perfil == 'paciente'">Especialista: <span style="font-weight: bold">{{turno.especialista}}</span></li>
+            <li class="list-group-item" *ngIf="perfil == 'admin' || perfil == 'especialista'">Paciente: <span style="font-weight: bold">{{turno.paciente}}</span></li>
+            <li class="list-group-item">Fecha: <span style="font-weight: bold">{{turno.fechaHora | date:'dd/MM/yy H:mm'}}</span></li>
+        </ul>
+        <div class="actions" *ngIf="perfil == 'paciente'">
+            <button type="button" class="btn btn-primary" *ngIf="turno.estado == 'Pendiente'" (click)="cancelarTurno()">Cancelar</button>
+            <button type="button" class="btn btn-warning" *ngIf="turno.resenia" (click)="verResenia()">Ver Reseña</button>
+            <button type="button" class="btn btn-info" *ngIf="turno.estado == 'Finalizado' && turno.resenia">Completar Encuesta</button>
+            <button type="button" class="btn btn-danger" *ngIf="turno.estado == 'Finalizado'" (click)="calificarTurno()">Calificar Atencion</button>
+        </div>
+        <div class="actions" *ngIf="perfil == 'especialista'">
+            <button type="button" class="btn btn-primary" *ngIf="turno.estado == 'Pendiente'" (click)="cancelarTurno()">Cancelar</button>
+            <button type="button" class="btn btn-dark" *ngIf="turno.estado == 'Pendiente'" (click)="rechazarTurno()">Rechazar</button>
+            <button type="button" class="btn btn-success" *ngIf="turno.estado == 'Pendiente'" (click)="aceptarTurno()">Aceptar</button>
+            <button type="button" class="btn btn-info" *ngIf="turno.estado == 'Aceptado'" (click)="finalizarTurno()">Finalizar</button>
+            <button type="button" class="btn btn-danger" *ngIf="turno.resenia" (click)="verResenia()">Ver Reseña</button>
+        </div>
+        <div class="actions" *ngIf="perfil == 'admin'">
+            <button type="button" class="btn btn-primary" *ngIf="turno.estado == 'Pendiente'" (click)="cancelarTurno()">Cancelar</button>
+        </div>
+        <div class="text-input" *ngIf="mostrarFormCancelacion">
+            <div class="row">
+                <div class="col-md-12 pad-2">
+                    <p>Cancelar turno</p>
+                    <textarea placeholder="Ingrese un comentario..." cols="30" rows="10" class="form-control" id="comentarioCancelacion" [(ngModel)]="comentarioCancelacion">{{turno.comentarioCancelacion}}</textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block mt-2" type="button" (click)="submitForm('cancelar')">Guardar</button>
+        </div>
+        <div class="text-input" *ngIf="mostrarFormCalificacion">
+            <div class="row" *ngIf="mostrarFormCalificacion">
+                <div class="col-md-12 pad-2">
+                    <p>Calificar atencion</p>
+                    <textarea placeholder="Ingrese un comentario..." cols="30" rows="10" class="form-control" id="comentarioCalificacion" [(ngModel)]="comentarioCalificacion">{{turno.comentarioCalificacion}}</textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block mt-2" type="button" (click)="submitForm('calificar')">Guardar</button>
+        </div>
+        <div class="text-input" *ngIf="mostrarFormRechazo">
+            <div class="row">
+                <div class="col-md-12 pad-2">
+                    <p>Rechazar turno</p>
+                    <textarea placeholder="Ingrese un comentario..." cols="30" rows="10" class="form-control" id="comentarioRechazo" [(ngModel)]="comentarioRechazo">{{turno.comentarioRechazo}}</textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block mt-2" type="button" (click)="submitForm('rechazar')">Guardar</button>
+        </div>
+        <div class="text-input" *ngIf="mostrarFormFinalizar">
+            <div class="row">
+                <div class="col-md-12 pad-2">
+                    <p>Finalizar turno</p>
+                    <textarea placeholder="Ingrese un comentario..." cols="30" rows="10" class="form-control" id="comentarioFinalizar" [(ngModel)]="comentarioFinalizar">{{turno.comentarioFinalizar}}</textarea>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block mt-2" type="button" (click)="submitForm('finalizar')">Guardar</button>
+        </div>
+        <hr>
+    </div>
+</div>

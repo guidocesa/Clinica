@@ -5,15 +5,15 @@
         <h2>Paciente: <span *ngIf="paciente">{{paciente.nombre}} {{paciente.apellido}}</span></h2>
     </div>
     <div class="btn-cont" *ngIf="nivel == 0">
-        <ng-container *ngFor="let especialidad of listaEspecialidades">
-            <button mat-fab class="boton-esp" color="secondary" aria-label="Especialidad" value="{{especialidad.descripcion}}" (click)="elegirEspecialidad(especialidad)">{{especialidad.descripcion}}</button>
+        <ng-container *ngFor="let especialista of listaEspecialistas">
+            <button mat-fab class="boton-esp" color="secondary" aria-label="Especialidad" value="{{especialista.mail}}" (click)="elegirEspecialista(especialista)">{{especialista.nombre + ' ' + especialista.apellido}}</button>
         </ng-container>
     </div>
     <div class="container" *ngIf="nivel == 1">
-        <h2>Especialidad: {{especialidadElegida.descripcion}}</h2>
+        <h2>Especialista Elegido: {{especialistaElegido.nombre + ' ' + especialistaElegido.apellido}}</h2>
         <div class="btn-cont">
-            <ng-container *ngFor="let especialista of listaEspecialistas">
-                <button mat-fab class="boton-esp" color="secondary" aria-label="Especialista" value="{{especialista.nombre}} {{especialista.apellido}}" (click)="elegirEspecialista(especialista)">Dr. {{especialista.nombre}} {{especialista.apellido}}</button>
+            <ng-container *ngFor="let especialidad of listaEspecialidades">
+                <button mat-fab class="boton-esp" color="secondary" aria-label="Especialista" value="{{especialidad.descripcion}}" (click)="elegirEspecialidad(especialidad)">{{especialidad.descripcion}}</button>
             </ng-container>
         </div>
         <p *ngIf="listaEspecialistas.length == 0">No se encontraron especilistas</p>

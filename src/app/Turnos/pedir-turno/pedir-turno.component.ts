@@ -53,6 +53,12 @@ export class PedirTurnoComponent implements OnInit {
       }
       especialidadesSubscription.unsubscribe();
     });
+    const especialistasSubscription = this.usuarioervice.getUsuariosPorPerfil('especialista').subscribe((especialistas: any) => {
+      for (let index = 0; index < especialistas.length; index++) {
+        this.listaEspecialistas.push(especialistas[index].payload.doc.data());
+      }
+      especialistasSubscription.unsubscribe();
+    });
     if(this.authService.usuario!.perfil == 'paciente'){
       this.paciente = this.authService.usuario!;
     }
@@ -63,31 +69,36 @@ export class PedirTurnoComponent implements OnInit {
     this.paciente = paciente;
   }
 
-  elegirEspecialidad(especialidad: any){
-    this.especialidadElegida = especialidad;
-    this.listaEspecialistas = [];
-    
-    let usuarioSubscription = this.usuarioervice.getUsuariosPorPerfil('especialista').subscribe((usuarios: any) => {
-      for (let index = 0; index < usuarios.length; index++) {
-        let usuario: Usuario = usuarios[index].payload.doc.data();
-        // if(usuario.especialidades.includes(especialidad.descripcion) && usuario.verificado){
-        //   this.listaEspecialistas.push(usuario);
-        // }
-        if(usuario.verificado){
-          usuario.especialidades.forEach((especialidadDoc)=>{
-            if(especialidadDoc.descripcion == especialidad.descripcion){
-              this.listaEspecialistas.push(usuario);
-            }
-          });
-        }
-      }
-      usuarioSubscription.unsubscribe();
-    });
+  elegirEspecialista(especialista: any){
+    this.especialistaElegido = especialista;
+    this.listaEspecialidades = this.especialistaElegido.especialidades;
     this.nivel = 1;
+
+
+    // this.especialidadElegida = especialidad;
+    // this.listaEspecialistas = [];
+    
+    // let usuarioSubscription = this.usuarioervice.getUsuariosPorPerfil('especialista').subscribe((usuarios: any) => {
+    //   for (let index = 0; index < usuarios.length; index++) {
+    //     let usuario: Usuario = usuarios[index].payload.doc.data();
+    //     // if(usuario.especialidades.includes(especialidad.descripcion) && usuario.verificado){
+    //     //   this.listaEspecialistas.push(usuario);
+    //     // }
+    //     if(usuario.verificado){
+    //       usuario.especialidades.forEach((especialidadDoc)=>{
+    //         if(especialidadDoc.descripcion == especialidad.descripcion){
+    //           this.listaEspecialistas.push(usuario);
+    //         }
+    //       });
+    //     }
+    //   }
+    //   usuarioSubscription.unsubscribe();
+    // });
+    // this.nivel = 1;
   }
 
-  elegirEspecialista(especialista: Usuario){
-    this.especialistaElegido = especialista;
+  elegirEspecialidad(especialidad: Usuario){
+    this.especialidadElegida = especialidad;
     this.crearListaDias();
     this.nivel = 2;
   }

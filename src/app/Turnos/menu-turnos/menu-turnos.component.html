@@ -13,8 +13,12 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <app-detalle-turno [turno]="turnoElegido"></app-detalle-turno>
+                <app-detalle-turno [turno]="turnoElegido"  (turnoFinalizadoEvent)="mostrarHistoriaClinica($event)"></app-detalle-turno>
             </div>
+            <div class="row">
+                <app-alta-historia-clinica [turno]="turnoElegido" *ngIf="mostrarHistoria" (cerrarHistoriaEvent)="cerrarHistoria($event)"></app-alta-historia-clinica>
+            </div>
+            
         </div>
     </div>
     <ng-template #solicitar>

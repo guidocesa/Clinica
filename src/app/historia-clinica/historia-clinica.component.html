@@ -1,0 +1,58 @@
+<div class="contenedor">
+    <h2>Historia Clinica</h2>
+    <table class="table align-items-center">
+        <thead>
+            <tr>
+              <th *ngIf="perfil == 'admin' || perfil == 'especialista'" class="text-center text-uppercase font-weight-bolder">Paciente</th>
+              <th class="text-center text-uppercase text-secondary font-weight-bolder">Especialidad</th>
+              <th *ngIf="perfil == 'admin' || perfil == 'paciente'" class="text-center text-uppercase font-weight-bolder">Especialista</th>
+              <th class="text-center text-uppercase text-secondary font-weight-bolder">Fecha</th>
+            </tr>
+        </thead>
+          <tbody>
+            <ng-container *ngIf="lista | async as listaHistorias; else empty">
+              <ng-container *ngIf="listaHistorias.length > 0; else empty">
+                <tr *ngFor="let historia of lista | async" class="row-turno" (click)="historiaElegida = historia">
+                  <td *ngIf="perfil == 'admin' || perfil == 'especialista'">
+                    <div>
+                      <div class="text-center">
+                        <span>{{historia.paciente}}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center">
+                      {{historia.especialidad}}
+                    </div>
+                  </td>
+                  <td class="text-center" *ngIf="perfil == 'admin' || perfil == 'paciente'">
+                    <span>{{historia.especialista}}</span>
+                  </td>
+                  <td>
+                    <div>
+                      <div>
+                        <div class="text-center">
+                          <span>{{historia.fecha | timestampToDate }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </tbody>
+    </table>
+    <ng-template #empty>No hay historias para mostrar</ng-template>
+</div>
+<div class="historia" *ngIf="historiaElegida">
+  <div class="encabezado">
+    <p><span class="bold">{{historiaElegida.especialista}} ({{historiaElegida.especialidad}})</span> - {{ historiaElegida.fecha | timestampToDate }}</p>
+  </div>
+  <div class="datos">
+    <ng-container *ngFor="let atributo of historiaElegida | keyvalue">
+      <div *ngIf="!noMostrar.includes(atributo.key)" class="dato">
+        <span class="bold">{{atributo.key}}</span>: {{atributo.value | boolToSino }}
+      </div>
+    </ng-container>
+  </div>
+</div>

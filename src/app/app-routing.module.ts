@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LoginComponent } from './login/login.component';
 import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
+import { PacientesComponent } from './pacientes/pacientes.component';
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
 import { RegisterEspecialistaComponent } from './Registros/register-especialista/register-especialista.component';
 import { RegisterPacienteComponent } from './Registros/register-paciente/register-paciente.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'paneladministrador', component: PanelAdministradorComponent},
   {path: 'usuarionoverificado', component: UserNotVerifiedComponent},
   {path: 'miperfil', component:MiPerfilComponent},
-  {path: 'misturnos', component: MenuTurnosComponent}
+  {path: 'misturnos', component: MenuTurnosComponent},
+  {path: 'pacientes', component: PacientesComponent}
 ];
 
 @NgModule({

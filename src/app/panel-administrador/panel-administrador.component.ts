@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestorageService } from '../servicios/firestorage.service';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import { RegisterAdminComponent } from '../Registros/register-admin/register-admin.component';
+import { AuthService } from '../servicios/auth.service';
 
 @Component({
   selector: 'app-panel-administrador',
@@ -13,8 +14,9 @@ export class PanelAdministradorComponent implements OnInit {
   usuarios:any;
   loading = false;
   filtro:string = 'paciente';
+  perfilUsuarioActual: any;
 
-  constructor(private fs: FirestorageService, public dialog: MatDialog) { }
+  constructor(private fs: FirestorageService, public dialog: MatDialog, private as:AuthService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -22,6 +24,7 @@ export class PanelAdministradorComponent implements OnInit {
       this.usuarios = x;
       this.loading = false;
     })
+    this.perfilUsuarioActual = this.as.usuario?.perfil;
   }
   openDialogBox()
   {

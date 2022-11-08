@@ -13,6 +13,7 @@ export class MenuTurnosComponent implements OnInit {
   pedirTurno: boolean = false;
   turnoElegido!: Turno;
   perfil: string = '';
+  mostrarHistoria: boolean = false;
   
   constructor(private authService: AuthService) { }
 
@@ -24,6 +25,18 @@ export class MenuTurnosComponent implements OnInit {
 
   recibirTurnoElegido(turno: Turno){
     this.turnoElegido = turno;
+  }
+
+  mostrarHistoriaClinica(mostrar: boolean){
+    if(mostrar && this.turnoElegido){
+      this.mostrarHistoria = true;
+    }
+  }
+
+  cerrarHistoria(cerrar: boolean){
+    if(cerrar){
+      this.mostrarHistoria = false;
+    }
   }
 
 }

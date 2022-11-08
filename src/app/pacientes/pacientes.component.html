@@ -1,0 +1,47 @@
+<div class="contenedor">
+    <h2>Pacientes</h2>
+    <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-center text-uppercase text-secondary font-weight-bolder">Nombre</th>
+                  <th class="text-center text-uppercase text-secondary font-weight-bolder">DNI</th>
+                  <th class="text-center text-uppercase text-secondary font-weight-bolder">Edad</th>
+                  <th class="text-center text-uppercase text-secondary font-weight-bolder">Obra Social</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="listaPacientes.length == 0">
+                  <td>No hay pacientes para mostrar</td>
+                </tr>
+                <tr *ngFor="let paciente of listaPacientes" class="row-turno" (click)="seleccionarPaciente(paciente)">
+                  <td>
+                    <div class="text-center">
+                        <span>{{paciente.nombre}} {{paciente.apellido}}</span>
+                    </div>                
+                  </td>
+                  <td>
+                    <div class="text-center">
+                      {{paciente.dni}}
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <span>{{paciente.edad}}</span>
+                  </td>
+                  <td>
+                    <div class="text-center">
+                        <span>{{paciente.obraSocial}}</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="historia row mb-4">
+    <app-historia-clinica [usuarioElegido]="usuarioElegido" *ngIf="mostrarHistoria"></app-historia-clinica>
+</div>

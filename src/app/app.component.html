@@ -17,7 +17,7 @@
             <a class="nav-link active" aria-current="page" href="#">Bienvenido</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" *ngIf="tipo == 'admin'" [routerLink]="['/paneladministrador']">Panel Administrador</a>
+            <a class="nav-link active" aria-current="page" [routerLink]="['/paneladministrador']">Panel Administrador</a>
           </li>
           <li class="nav-item">
               <a class="nav-link  active" [routerLink]="['/registro']">Registro</a>
@@ -30,6 +30,11 @@
           <li class="nav-item">
             <a class="nav-link  active"  [routerLink]="['/misturnos']" tabindex="-1" aria-disabled="true"
             >Mis Turnos</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  active"  [routerLink]="['/pacientes']" tabindex="-1" aria-disabled="true"
+            >Pacientes</a
             >
           </li>
             <li class="nav-item">

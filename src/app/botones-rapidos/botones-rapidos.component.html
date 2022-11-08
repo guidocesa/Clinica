@@ -5,7 +5,8 @@
       </div>
       <div class="btn-cont" *ngIf="list | async as usuario; else loading;">
           <ng-container *ngFor="let usuario of list | async">
-              <button [ngStyle]="{'background-image': 'url('+usuario.imagen1Url+')'}" type="button" title="{{usuario.perfil}}" class="btn boton btn-custom" (click)="emitirUsuario(usuario)"></button>
+              <button [ngStyle]="{'background-image': 'url('+usuario.imagen1Url+')'}" type="button" title="{{usuario.perfil + ' ' + usuario.nombre+ ' ' + usuario.apellido}}" class="btn boton btn-custom" (click)="emitirUsuario(usuario)"></button>
+
           </ng-container>
       </div>
       <ng-template #loading>

@@ -36,6 +36,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { DetalleTurnoComponent } from './Turnos/detalle-turno/detalle-turno.component';
 import { ReseniaDialogComponent } from './resenia-dialog/resenia-dialog.component';
 import { RecaptchaFormsModule, RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
+import { HistoriaClinicaComponent } from './historia-clinica/historia-clinica.component';
+import { TimestampToDatePipe } from './Pipes/timestamp-to-date.pipe';
+import { BoolToSinoPipe } from './Pipes/bool-to-sino.pipe';
+import { PacientesComponent } from './pacientes/pacientes.component';
+import { AltaHistoriaClinicaComponent } from './alta-historia-clinica/alta-historia-clinica.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +62,12 @@ import { RecaptchaFormsModule, RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSet
     MiPerfilComponent,
     MisHorariosComponent,
     DetalleTurnoComponent,
-    ReseniaDialogComponent
+    ReseniaDialogComponent,
+    HistoriaClinicaComponent,
+    TimestampToDatePipe,
+    BoolToSinoPipe,
+    PacientesComponent,
+    AltaHistoriaClinicaComponent
   ],
   imports: [
     BrowserModule,

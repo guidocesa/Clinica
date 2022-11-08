@@ -1,0 +1,150 @@
+<div class="container">
+    <div class="py-5 text-center">
+      <h2>Historia Clinica</h2>
+      <p class="lead">Complete los datos para una nueva entrada</p>
+    </div>
+    <form [formGroup]="form" ngNativeValidate>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="altura">Altura</label>
+                <input [ngClass]="{inputError: form.controls.altura.errors && form.get('altura')?.touched}" formControlName="altura" type="text" class="form-control" id="altura">
+                <div *ngIf="form.get('altura')?.hasError('required') && form.get('altura')?.touched" id="alturaHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="peso">Peso</label>
+                <input [ngClass]="{inputError: form.controls.peso.errors && form.get('peso')?.touched}" formControlName="peso" type="text" class="form-control" id="peso">
+                <div *ngIf="form.get('peso')?.hasError('required') && form.get('peso')?.touched" id="descripcionHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="temperatura">Temperatura</label>
+                <input [ngClass]="{inputError: form.controls.temperatura.errors && form.get('temperatura')?.touched}" formControlName="temperatura" type="text" class="form-control" id="temperatura">
+                <div *ngIf="form.get('temperatura')?.hasError('required') && form.get('temperatura')?.touched" id="temperaturaHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="presion">Presion</label>
+                <input [ngClass]="{inputError: form.controls.presion.errors && form.get('presion')?.touched}" formControlName="presion" type="text" class="form-control" id="presion">
+                <div *ngIf="form.get('presion')?.hasError('required') && form.get('presion')?.touched" id="presionHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+        </div>
+        <hr class="mb-4">
+        <h2>Datos dinamicos sprint 3</h2>
+        <div class="row" *ngIf="datosDinamicos>0">
+            <div class="col-md-6 mb-3">
+                <label for="dato1Key">Nombre</label>
+                <input [ngClass]="{inputError: form.controls.dato1Key.errors && form.get('dato1Key')?.touched}" formControlName="dato1Key" type="text" class="form-control" id="dato1Key">
+                <div *ngIf="form.get('dato1Key')?.hasError('required') && form.get('dato1Key')?.touched" id="dato1KeyHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="dato1Value">Valor</label>
+                <input [ngClass]="{inputError: form.controls.dato1Value.errors && form.get('dato1Value')?.touched}" formControlName="dato1Value" type="text" class="form-control" id="dato1Value">
+                <div *ngIf="form.get('dato1Value')?.hasError('required') && form.get('dato1Value')?.touched" id="dato1ValueHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="datosDinamicos>1">
+            <div class="col-md-6 mb-3">
+                <label for="dato2Key">Nombre</label>
+                <input [ngClass]="{inputError: form.controls.dato2Key.errors && form.get('dato2Key')?.touched}" formControlName="dato2Key" type="text" class="form-control" id="dato2Key">
+                <div *ngIf="form.get('dato2Key')?.hasError('required') && form.get('dato2Key')?.touched" id="dato2KeyHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="dato2Value">Valor</label>
+                <input [ngClass]="{inputError: form.controls.dato2Value.errors && form.get('dato2Value')?.touched}" formControlName="dato2Value" type="text" class="form-control" id="dato2Value">
+                <div *ngIf="form.get('dato2Value')?.hasError('required') && form.get('dato2Value')?.touched" id="dato2ValueHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="datosDinamicos>2">
+            <div class="col-md-6 mb-3">
+                <label for="dato3Key">Nombre</label>
+                <input [ngClass]="{inputError: form.controls.dato3Key.errors && form.get('dato3Key')?.touched}" formControlName="dato3Key" type="text" class="form-control" id="dato3Key">
+                <div *ngIf="form.get('dato3Key')?.hasError('required') && form.get('dato3Key')?.touched" id="dato3KeyHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="dato3Value">Valor</label>
+                <input [ngClass]="{inputError: form.controls.dato3Value.errors && form.get('dato3Value')?.touched}" formControlName="dato3Value" type="text" class="form-control" id="dato3Value">
+                <div *ngIf="form.get('dato3Value')?.hasError('required') && form.get('dato3Value')?.touched" id="dato3ValueHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-secondary btn-block" type="button" (click)="agregarDatoDinamico()">+</button>
+        <hr class="mb-4">
+        <h2>Datos dinamicos sprint 5</h2>
+        <div class="row" *ngIf="datosDinamicosSprint5>0">
+            <div class="col-md-6 mb-3">
+                <label for="dato4Key">Nombre</label>
+                <input [ngClass]="{inputError: form.controls.dato4Key.errors && form.get('dato4Key')?.touched}" formControlName="dato4Key" type="text" class="form-control" id="dato4Key">
+                <div *ngIf="form.get('dato4Key')?.hasError('required') && form.get('dato4Key')?.touched" id="dato4KeyHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="dato4Value">Valor</label>
+                <!--<mat-slider min="1" max="100" step="1" value="50" [ngClass]="{inputError: form.controls.dato4Value.errors && form.get('dato4Value')?.touched}" formControlName="dato4Value" class="form-control" id="dato4Value"></mat-slider>-->
+                <input type="range" min="1" max="100" step="1" value="50" [ngClass]="{inputError: form.controls.dato4Value.errors && form.get('dato4Value')?.touched}" formControlName="dato4Value" class="form-control" id="dato4Value" oninput="this.nextElementSibling.value = this.value">
+                <output>50</output>
+                <div *ngIf="form.get('dato4Value')?.hasError('required') && form.get('dato4Value')?.touched" id="dato4ValueHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="datosDinamicosSprint5>1">
+            <div class="col-md-6 mb-3">
+                <label for="dato5Key">Nombre</label>
+                <input [ngClass]="{inputError: form.controls.dato5Key.errors && form.get('dato5Key')?.touched}" formControlName="dato5Key" type="text" class="form-control" id="dato5Key">
+                <div *ngIf="form.get('dato5Key')?.hasError('required') && form.get('dato5Key')?.touched" id="dato5KeyHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="dato5Value">Valor</label>
+                <input [ngClass]="{inputError: form.controls.dato5Value.errors && form.get('dato5Value')?.touched}" formControlName="dato5Value" type="number" class="form-control" id="dato5Value">
+                <div *ngIf="form.get('dato5Value')?.hasError('required') && form.get('dato5Value')?.touched" id="dato5ValueHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="datosDinamicosSprint5>2">
+            <div class="col-md-6 mb-3">
+                <label for="dato6Key">Nombre</label>
+                <input [ngClass]="{inputError: form.controls.dato6Key.errors && form.get('dato6Key')?.touched}" formControlName="dato6Key" type="text" class="form-control" id="dato6Key">
+                <div *ngIf="form.get('dato6Key')?.hasError('required') && form.get('dato6Key')?.touched" id="dato6KeyHelp" class="form-text error">
+                    Este campo es requerido
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="dato6Value">Valor</label>
+                <!--<mat-slide-toggle formControlName="dato6Value" class="form-control" id="dato6Value"></mat-slide-toggle>-->
+                <label class="switch">
+                    <input type="checkbox" formControlName="dato6Value" id="dato6Value">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        <button class="btn btn-secondary btn-block" type="button" (click)="agregarDatoDinamicoSprint5()">+</button>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg btn-block" type="button" (click)="submitForm()" *ngIf="!loading">Guardar</button>
+        <div style="text-align: center;" *ngIf="loading">
+            <app-spinner [diameter]="50"></app-spinner>
+        </div>
+    </form>
+  </div>

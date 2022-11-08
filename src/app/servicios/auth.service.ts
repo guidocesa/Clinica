@@ -25,7 +25,7 @@ export class AuthService {
   public login(usuario: Usuario){
     return new Promise<void>((resolve, reject)=>{
       this.afAuth.signInWithEmailAndPassword(usuario.mail, usuario.password).then((cred)=>{
-        if(!cred.user?.emailVerified){
+        if(false  /*!cred.user?.emailVerified*/){
           this.router.navigate(['/usuarionoverificado']);
         }else{
           this.currentUserEmail = usuario.mail;

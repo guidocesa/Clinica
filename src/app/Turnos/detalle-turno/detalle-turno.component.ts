@@ -6,6 +6,7 @@ import { Turno } from 'src/app/servicios/turno';
 import { TurnoStatus } from 'src/app/servicios/turno-status';
 import { TurnosService } from 'src/app/servicios/turnos.service';
 import { ReseniaDialogComponent } from 'src/app/resenia-dialog/resenia-dialog.component';
+import { HistoriaClinica } from 'src/app/servicios/historia-clinica';
 
 @Component({
   selector: 'app-detalle-turno',
@@ -20,6 +21,7 @@ export class DetalleTurnoComponent implements OnInit {
   perfil: string = '';
   loading: boolean = false;
   noMostrar: string[] = ['especialista_id', 'paciente_id', 'fecha', 'id', 'turno_id'];
+  historiaElegida: HistoriaClinica | null = null;
   
   mostrarFormCancelacion: boolean = false;
   mostrarFormCalificacion: boolean = false;
@@ -124,10 +126,10 @@ export class DetalleTurnoComponent implements OnInit {
   }
 
   verResenia(){
-    if(this.turno.resenia){
+    if(this.turno.comentarioCalificacion){
       const dialogRef = this.dialog.open(ReseniaDialogComponent, {
         width: '600px',
-        data: { titulo: 'Reseña del Turno', mensaje: this.turno.resenia }
+        data: { titulo: 'Reseña del Turno', mensaje: this.turno.comentarioCalificacion}
       });
     }
   }
@@ -138,6 +140,7 @@ export class DetalleTurnoComponent implements OnInit {
       this.mostrarFormCancelacion = false;
       this.mostrarFormFinalizar = false;
       this.mostrarFormRechazo = false;
+      this.historiaElegida = null;
     }
 
     this.comentarioCancelacion = '';
@@ -158,6 +161,12 @@ export class DetalleTurnoComponent implements OnInit {
       if(this.turno.comentarioRechazo){
         this.comentarioRechazo = this.turno.comentarioRechazo;
       }
+    }
+  }
+
+  verHistoria(){
+    if(this.turno.historia){
+      this.historiaElegida = JSON.parse(this.turno.historia);
     }
   }
 }

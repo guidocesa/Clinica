@@ -12,19 +12,22 @@
         </ul>
         <div class="actions" *ngIf="perfil == 'paciente'">
             <button type="button" class="btn btn-primary" *ngIf="turno.estado == 'Pendiente'" (click)="cancelarTurno()">Cancelar</button>
-            <button type="button" class="btn btn-warning" *ngIf="turno.resenia" (click)="verResenia()">Ver Reseña</button>
+            <button type="button" class="btn btn-warning" *ngIf="turno.comentarioCalificacion" (click)="verResenia()">Ver Reseña</button>
             <button type="button" class="btn btn-info" *ngIf="turno.estado == 'Finalizado' && turno.resenia">Completar Encuesta</button>
             <button type="button" class="btn btn-danger" *ngIf="turno.estado == 'Finalizado'" (click)="calificarTurno()">Calificar Atencion</button>
+            <button type="button" class="btn btn-dark" *ngIf="turno.historia && turno.historia != ''" (click)="verHistoria()">Ver Historia</button>
         </div>
         <div class="actions" *ngIf="perfil == 'especialista'">
             <button type="button" class="btn btn-primary" *ngIf="turno.estado == 'Pendiente'" (click)="cancelarTurno()">Cancelar</button>
             <button type="button" class="btn btn-dark" *ngIf="turno.estado == 'Pendiente'" (click)="rechazarTurno()">Rechazar</button>
             <button type="button" class="btn btn-success" *ngIf="turno.estado == 'Pendiente'" (click)="aceptarTurno()">Aceptar</button>
             <button type="button" class="btn btn-info" *ngIf="turno.estado == 'Aceptado'" (click)="finalizarTurno()">Finalizar</button>
-            <button type="button" class="btn btn-danger" *ngIf="turno.resenia" (click)="verResenia()">Ver Reseña</button>
+            <button type="button" class="btn btn-danger" *ngIf="turno.comentarioCalificacion" (click)="verResenia()">Ver Reseña</button>
+            <button type="button" class="btn btn-dark" *ngIf="turno.historia && turno.historia != ''" (click)="verHistoria()">Ver Historia</button>
         </div>
         <div class="actions" *ngIf="perfil == 'admin'">
             <button type="button" class="btn btn-primary" *ngIf="turno.estado == 'Pendiente'" (click)="cancelarTurno()">Cancelar</button>
+            <button type="button" class="btn btn-dark" *ngIf="turno.historia && turno.historia != ''" (click)="verHistoria()">Ver Historia</button>
         </div>
         <div class="text-input" *ngIf="mostrarFormCancelacion">
             <div class="row">
@@ -63,5 +66,17 @@
             <button class="btn btn-primary btn-lg btn-block mt-2" type="button" (click)="submitForm('finalizar')">Guardar</button>
         </div>
         <hr>
+        <div class="historia" *ngIf="historiaElegida">
+            <div class="encabezado">
+              <p><span class="bold">{{historiaElegida.especialista}} ({{historiaElegida.especialidad}})</span></p>
+            </div>
+            <div class="datos">
+              <ng-container *ngFor="let atributo of historiaElegida | keyvalue">
+                <div *ngIf="!noMostrar.includes(atributo.key)" class="dato">
+                  <span class="bold">{{atributo.key}}</span>: {{atributo.value }}
+                </div>
+              </ng-container>
+            </div>
+          </div>
     </div>
 </div>

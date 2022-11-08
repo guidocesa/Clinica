@@ -19,6 +19,40 @@
         </div>
     </div>
     <hr class="mt-2 mb-2">
+    <div id="historiapdf" class="row" *ngIf="usuario.perfil=='paciente'">
+        <!-- <div class="col-md-12">
+            <app-historia-clinica></app-historia-clinica>
+        </div> -->
+        <div class="row">
+            <div class="col-md-3">
+                <img id="icono" src="../../assets/health-clinic-icon.png">
+            </div>
+            <div class="col-md-9" style="text-align: center;">
+                <h2>Historia Clinica</h2>
+                <p>Fecha: {{ fecha | date:'dd-MM-yyyy' }} </p>
+            </div>
+        </div>
+        <ng-container *ngIf="lista | async as listaHistorias; else empty">
+            <ng-container *ngIf="listaHistorias.length > 0; else empty">
+              <div *ngFor="let historia of lista | async" class="row-turno">
+                <div class="historia">
+                    <div class="encabezado">
+                        <p><span class="bold">{{historia.especialista}} ({{historia.especialidad}})</span> - {{ historia.fecha | timestampToDate }}</p>
+                    </div>
+                    <div class="datos">
+                    <ng-container *ngFor="let atributo of historia | keyvalue">
+                        <div *ngIf="!noMostrar.includes(atributo.key)" class="dato">
+                            <span class="bold">{{atributo.key}}</span>: {{atributo.value | boolToSino }}
+                        </div>
+                    </ng-container>
+                    </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-dark" (click)="descargarHistoriaClinica()">Descargar Historia Clinica</button>
+            </ng-container>
+        </ng-container>
+        <ng-template #empty>No hay historias para mostrar</ng-template>
+    </div>
     <div class="row mt-4">
         <div class="col-md-12">
             <app-mis-horarios *ngIf="usuario.perfil == 'especialista'"></app-mis-horarios>

@@ -47,13 +47,13 @@ Luego recuerde verificar su cuenta mediante un correo que deberia encontrarse en
 
 ***
 
-###2. Solicitar un Turno
+### 2. Solicitar un Turno
 
 Para solicitar un turno, previo haberse registrado, verificado su cuenta y habiendo ingresado al sitio con su email y contraseña, seleccione la pestaña de **Mis Turnos** en la parte superior de la pagina y luego haga click en el boton azul **Solicitar Turno**.
 
 ![Instruccion de Turnos!](https://firebasestorage.googleapis.com/v0/b/clinica-b10cd.appspot.com/o/imagenes-readme%2Finstruccion-turnos.png?alt=media&token=754adf73-4698-446d-ab8e-6186250c89a7 "Turnos")
 
-Luego seleccione el especialista con el que desea atenderse, la especialidad del mismo, el dia de la semana, y la hora de su turno. Tenga en cuenta que las opciones se iran deplegando a medida que vaya seleccionando la anterior. Para ver los nombres de los especialistas o las especialidades solo basta con posicionar el mause sobre las imagenes.
+Luego seleccione el especialista con el que desea atenderse, la especialidad del mismo, el dia de la semana, y la hora de su turno. Tenga en cuenta que las opciones se iran desplegando a medida que vaya seleccionando la anterior. Para ver los nombres de los especialistas o las especialidades solo basta con posicionar el mouse sobre las imagenes.
 
 ![!](https://firebasestorage.googleapis.com/v0/b/clinica-b10cd.appspot.com/o/imagenes-readme%2Finstruccion-turnos2.png?alt=media&token=08981c7d-3df0-4ac6-af95-665678729901 "Turnos2")
 

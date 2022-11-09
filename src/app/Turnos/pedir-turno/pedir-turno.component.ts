@@ -51,6 +51,7 @@ export class PedirTurnoComponent implements OnInit {
       for (let index = 0; index < especialidades.length; index++) {
         this.listaEspecialidades.push(especialidades[index].payload.doc.data());
       }
+      console.log(this.listaEspecialidades);
       especialidadesSubscription.unsubscribe();
     });
     const especialistasSubscription = this.usuarioervice.getUsuariosPorPerfil('especialista').subscribe((especialistas: any) => {
@@ -68,6 +69,8 @@ export class PedirTurnoComponent implements OnInit {
   recibirPaciente(paciente: Usuario){
     this.paciente = paciente;
   }
+
+
 
   elegirEspecialista(especialista: any){
     this.especialistaElegido = especialista;
@@ -250,7 +253,7 @@ export class PedirTurnoComponent implements OnInit {
       case 1:
         this.listaHoras = [];
         this.listaDias = [];
-        this.listaEspecialistas = [];
+        this.listaEspecialidades = [];
         break;
     }
     this.nivel--;

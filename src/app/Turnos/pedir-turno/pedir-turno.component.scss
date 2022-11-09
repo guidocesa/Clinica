@@ -1,0 +1,27 @@
+.btn-cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;    
+}
+
+.boton {
+    margin: 5px;
+}
+
+.boton-esp{
+    width: 150px !important;
+    height: 150px !important;
+    border-radius: 10%;
+}
+
+.boton-especialidad{
+    width: 150px !important;
+    height: 75px !important;
+    background-size: 50% 100%; 
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.cancelar{
+    float: right;
+}

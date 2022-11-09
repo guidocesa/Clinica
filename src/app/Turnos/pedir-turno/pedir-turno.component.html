@@ -6,14 +6,14 @@
     </div>
     <div class="btn-cont" *ngIf="nivel == 0">
         <ng-container *ngFor="let especialista of listaEspecialistas">
-            <button mat-fab class="boton-esp" color="secondary" aria-label="Especialidad" value="{{especialista.mail}}" (click)="elegirEspecialista(especialista)">{{especialista.nombre + ' ' + especialista.apellido}}</button>
+            <button title="{{especialista.nombre + ' ' + especialista.apellido}}" style="background-image: url({{especialista.imagen1Url}}); background-size: cover;" mat-fab class="boton-esp" color="secondary" aria-label="Especialidad" value="{{especialista.mail}}" (click)="elegirEspecialista(especialista)"></button>
         </ng-container>
     </div>
     <div class="container" *ngIf="nivel == 1">
         <h2>Especialista Elegido: {{especialistaElegido.nombre + ' ' + especialistaElegido.apellido}}</h2>
         <div class="btn-cont">
             <ng-container *ngFor="let especialidad of listaEspecialidades">
-                <button mat-fab class="boton-esp" color="secondary" aria-label="Especialista" value="{{especialidad.descripcion}}" (click)="elegirEspecialidad(especialidad)">{{especialidad.descripcion}}</button>
+                <button title="{{especialidad.descripcion}}"  mat-fab style="background-image: url({{especialidad.foto}});" class="boton-especialidad" color="secondary" aria-label="Especialista" value="{{especialidad.descripcion}}" (click)="elegirEspecialidad(especialidad)"></button>
             </ng-container>
         </div>
         <p *ngIf="listaEspecialistas.length == 0">No se encontraron especilistas</p>

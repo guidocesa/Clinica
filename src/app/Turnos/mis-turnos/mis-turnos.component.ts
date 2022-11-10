@@ -49,11 +49,20 @@ export class MisTurnosComponent implements OnInit {
 
       let date = new Date(turno.fechaHora);
       if (turno.especialista.toLowerCase().includes(this.filtro) ||
-        turno.especialidad.toLowerCase().includes(this.filtro)
+        turno.especialidad.toLowerCase().includes(this.filtro) ||
+        date.getDate().toString().includes(this.filtro) ||
+        date.getMonth().toString().includes(this.filtro) ||
+        date.getHours().toString().includes(this.filtro) ||
+        date.getMinutes().toString().includes(this.filtro) ||
+        turno.paciente.toLowerCase().includes(this.filtro) ||
+        turno.estado.toLowerCase().includes(this.filtro)
       ){
         return turno;
       }
-      
+      //Busco en la historia clinica del turno
+      if(turno.historia && turno.historia.toLowerCase().includes(this.filtro)){
+        return turno;
+      }
       return null;
     });
   }

@@ -1,5 +1,8 @@
 <div class="containerGeneral"  >
-  <app-tabla-usuarios (habilitarProfesionalEmit)="habilitarProfesional($event)" [listaItems]="usuarios" [filtro]="filtro"></app-tabla-usuarios>
+  <app-tabla-usuarios (habilitarProfesionalEmit)="habilitarProfesional($event)" (mostrarHistoriaEmit)="mostrarHistoria($event)" [listaItems]="usuarios" [filtro]="filtro"></app-tabla-usuarios>
   <button (click)="openDialogBox()" class="btn btn-secondary btn-lg">Agregar Administrador</button>
   <app-spinner style="position: absolute;" *ngIf="loading" [diameter]="100"></app-spinner>
+  <div *ngIf="mostrarHistoriaBool">
+    <app-historia-clinica [usuarioElegido]="usuarioElegido"></app-historia-clinica>
+  </div>
 </div>

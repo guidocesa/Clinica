@@ -15,6 +15,8 @@ export class PanelAdministradorComponent implements OnInit {
   loading = false;
   filtro:string = 'paciente';
   perfilUsuarioActual: any;
+  usuarioElegido:any;
+  mostrarHistoriaBool = false;
 
   constructor(private fs: FirestorageService, public dialog: MatDialog, private as:AuthService) { }
 
@@ -42,6 +44,12 @@ export class PanelAdministradorComponent implements OnInit {
   habilitarProfesional(email:string)
   {
     this.fs.verificarProfesional(email);
+  }
+
+  mostrarHistoria(usuario:string)
+  {
+    this.usuarioElegido = usuario;
+    this.mostrarHistoriaBool = true;
   }
 
 }

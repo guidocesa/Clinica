@@ -1,0 +1,35 @@
+.estado {
+    text-transform: uppercase;
+    float:right;
+}
+
+.actions{
+    display:flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.pad-2{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.historia{
+    background-color: rgb(247, 247, 247);
+    border: 1px solid rgb(199, 199, 199);
+    border-radius: 10px;
+}
+
+.datos{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.encabezado{
+    background-color: rgb(123, 128, 154);
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}

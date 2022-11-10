@@ -7,13 +7,21 @@ import { TurnoStatus } from 'src/app/servicios/turno-status';
 import { TurnosService } from 'src/app/servicios/turnos.service';
 import { ReseniaDialogComponent } from 'src/app/resenia-dialog/resenia-dialog.component';
 import { HistoriaClinica } from 'src/app/servicios/historia-clinica';
+import { fader } from 'src/app/animation';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-detalle-turno',
   templateUrl: './detalle-turno.component.html',
-  styleUrls: ['./detalle-turno.component.scss']
+  styleUrls: ['./detalle-turno.component.scss'],
 })
+
+
 export class DetalleTurnoComponent implements OnInit {
+
+  isOpen = false;
+
+
 
   @Input() turno!: Turno;
   @Output() turnoFinalizadoEvent: EventEmitter<boolean> = new EventEmitter<boolean>();

@@ -1,4 +1,4 @@
-<div *ngIf="turno">
+<div *ngIf="turno" [@openClose]="turno ? 'open' : 'closed'">
     <div class="card" style="width: 90%;">
         <div class="card-body">
             <h1 class="card-title">Información del Turno</h1>

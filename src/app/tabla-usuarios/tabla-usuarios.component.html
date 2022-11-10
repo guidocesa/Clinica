@@ -20,6 +20,9 @@
                     <td>
                         <button *ngIf="item.perfil == 'especialista' && item.verificado === false " type="button" class="btn btn-sm btn-outline-secondary" (click)="habilitarProfesional(item.mail)">Habilitar</button>
                     </td>
+                    <td>
+                        <button *ngIf="item.perfil == 'paciente'" type="button" class="btn btn-sm btn-outline-secondary" (click)="mostrarHistoria(item)">Ver Historia Clinica</button>
+                    </td>
                     
             </tr>
           </table>

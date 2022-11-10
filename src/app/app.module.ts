@@ -28,8 +28,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MisTurnosComponent } from './Turnos/mis-turnos/mis-turnos.component';
 import { PedirTurnoComponent } from './Turnos/pedir-turno/pedir-turno.component';
 import { MenuTurnosComponent } from './Turnos/menu-turnos/menu-turnos.component';
-import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
-import { MisHorariosComponent } from './mis-horarios/mis-horarios.component';
+import { MiPerfilComponent } from './Perfil/mi-perfil/mi-perfil.component';
+import { MisHorariosComponent } from './Perfil/mis-horarios/mis-horarios.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -37,10 +37,11 @@ import { DetalleTurnoComponent } from './Turnos/detalle-turno/detalle-turno.comp
 import { ReseniaDialogComponent } from './resenia-dialog/resenia-dialog.component';
 import { RecaptchaFormsModule, RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings } from 'ng-recaptcha';
 import { HistoriaClinicaComponent } from './historia-clinica/historia-clinica.component';
-import { TimestampToDatePipe } from './Pipes/timestamp-to-date.pipe';
-import { BoolToSinoPipe } from './Pipes/bool-to-sino.pipe';
+import { TimestampToDatePipe } from './shared/Pipes/timestamp-to-date.pipe';
+import { BoolToSinoPipe } from './shared/Pipes/bool-to-sino.pipe';
 import { PacientesComponent } from './pacientes/pacientes.component';
 import { AltaHistoriaClinicaComponent } from './alta-historia-clinica/alta-historia-clinica.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -59,15 +60,11 @@ import { AltaHistoriaClinicaComponent } from './alta-historia-clinica/alta-histo
     MisTurnosComponent,
     PedirTurnoComponent,
     MenuTurnosComponent,
-    MiPerfilComponent,
-    MisHorariosComponent,
     DetalleTurnoComponent,
     ReseniaDialogComponent,
     HistoriaClinicaComponent,
-    TimestampToDatePipe,
-    BoolToSinoPipe,
     PacientesComponent,
-    AltaHistoriaClinicaComponent
+    AltaHistoriaClinicaComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,14 +81,15 @@ import { AltaHistoriaClinicaComponent } from './alta-historia-clinica/alta-histo
     MatSnackBarModule,
     MatAutocompleteModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    SharedModule
   ],
   providers: [ AngularFireAuth, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, { provide: MatDialogRef, useValue: {}}, DatePipe, {
     provide: RECAPTCHA_SETTINGS,
     useValue: {
       siteKey: environment.recaptcha.siteKey,
     } as RecaptchaSettings,
-  }],
+  }, BoolToSinoPipe, TimestampToDatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

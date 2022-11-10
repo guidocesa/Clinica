@@ -1,0 +1,13 @@
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.flex-center ::ng-deep .mat-progress-spinner circle, .mat-spinner circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    stroke: #242358;
+}

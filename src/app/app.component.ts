@@ -1,10 +1,17 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { fader, slider } from './animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    //fader,
+    slider,
+    //transformer,
+    //stepper
+  ]
 })
 export class AppComponent {
   title = 'Clinica';
@@ -22,12 +29,15 @@ export class AppComponent {
     
   }
 
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
   async logout()
   {
     localStorage.removeItem("user");
     localStorage.removeItem("tipo");
     await this.r.navigateByUrl("/login");
-    window.location.reload();
   }
 
 }

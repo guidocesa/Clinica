@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from '../servicios/auth.service';
-import { Usuario } from '../servicios/usuario';
-import { HistoriaClinica } from '../servicios/historia-clinica';
+import { AuthService } from '../../servicios/auth.service';
+import { Usuario } from '../../servicios/usuario';
+import { HistoriaClinica } from '../../servicios/historia-clinica';
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
-import { HistoriaClinicaService } from '../servicios/historia-clinica.service';
+import { HistoriaClinicaService } from '../../servicios/historia-clinica.service';
 
 @Component({
   selector: 'app-mi-perfil',

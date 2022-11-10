@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from '../servicios/auth.service';
-import { Usuario } from '../servicios/usuario';
-import { UsuarioService } from '../servicios/usuario.service';
+import { AuthService } from '../../servicios/auth.service';
+import { Usuario } from '../../servicios/usuario';
+import { UsuarioService } from '../../servicios/usuario.service';
 
 @Component({
   selector: 'app-mis-horarios',

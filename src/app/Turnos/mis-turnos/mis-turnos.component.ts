@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
 import { map } from 'rxjs';
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -15,10 +15,16 @@ export class MisTurnosComponent implements OnInit {
   //turnos: Observable<Turno[]>;
   listaTurnos: Turno[] = [];
   listaTurnosFiltrados: Turno[] = [];
-  filtro: string = '';
+  _filtro = '';
+  @Input()  
+  set filtro(value: any){
+    this._filtro = value;
+    this.filtroTurnos(); 
+  }
   perfil: string = '';
   @Output() turnoElegidoEvent: EventEmitter<Turno> = new EventEmitter<Turno>();
   match: boolean = false;
+
 
   constructor(private authService: AuthService, private turnosService: TurnosService) { }
 
@@ -37,30 +43,31 @@ export class MisTurnosComponent implements OnInit {
         })
       ).subscribe((subs)=>{
         this.listaTurnosFiltrados = this.listaTurnos;
+        this.filtroTurnos();
       });      
       this.perfil = this.authService.usuario.perfil;
     }
   }
 
   filtroTurnos() {
-    this.filtro = this.filtro.toLowerCase();
+    this._filtro = this._filtro.toLowerCase();
 
     this.listaTurnosFiltrados = this.listaTurnos.filter((turno) => {  
 
       let date = new Date(turno.fechaHora);
-      if (turno.especialista.toLowerCase().includes(this.filtro) ||
-        turno.especialidad.toLowerCase().includes(this.filtro) ||
-        date.getDate().toString().includes(this.filtro) ||
-        date.getMonth().toString().includes(this.filtro) ||
-        date.getHours().toString().includes(this.filtro) ||
-        date.getMinutes().toString().includes(this.filtro) ||
-        turno.paciente.toLowerCase().includes(this.filtro) ||
-        turno.estado.toLowerCase().includes(this.filtro)
+      if (turno.especialista.toLowerCase().includes(this._filtro) ||
+        turno.especialidad.toLowerCase().includes(this._filtro) ||
+        date.getDate().toString().includes(this._filtro) ||
+        date.getMonth().toString().includes(this._filtro) ||
+        date.getHours().toString().includes(this._filtro) ||
+        date.getMinutes().toString().includes(this._filtro) ||
+        turno.paciente.toLowerCase().includes(this._filtro) ||
+        turno.estado.toLowerCase().includes(this._filtro)
       ){
         return turno;
       }
       //Busco en la historia clinica del turno
-      if(turno.historia && turno.historia.toLowerCase().includes(this.filtro)){
+      if(turno.historia && turno.historia.toLowerCase().includes(this._filtro)){
         return turno;
       }
       return null;

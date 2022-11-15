@@ -10,12 +10,14 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-material-extensions/fab-menu": "^5.1.0",
     "@angular/animations": "^14.2.0",
     "@angular/cdk": "^14.2.5",
     "@angular/common": "^14.2.0",
     "@angular/compiler": "^14.2.0",
     "@angular/core": "^14.2.0",
     "@angular/fire": "^7.4.1",
+    "@angular/flex-layout": "^14.0.0-beta.41",
     "@angular/forms": "^14.2.0",
     "@angular/localize": "^14.2.0",
     "@angular/material": "^14.2.5",
@@ -30,6 +32,7 @@
     "ng-recaptcha": "^10.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

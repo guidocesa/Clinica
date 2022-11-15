@@ -1,0 +1,56 @@
+<div class="card h-100">
+    <div class="card-header pb-0">
+      <h2>Detalles del Usuario</h2>
+      <p class="text-sm">
+        <i class="fa fa-arrow-left text-success" aria-hidden="true"></i>
+        Seleccione un <span class="font-weight-bold">usuario</span> de la lista
+      </p>
+    </div>
+    <div class="card-body p-3" *ngIf="usuario">
+      <div class="timeline timeline-one-side">
+        <div class="timeline-block mb-3">
+          <div class="timeline-content">
+              <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Nombre completo</p>
+            <h2 class="text-dark text-sm font-weight-bold mb-0">{{usuario.nombre}} {{usuario.apellido}}</h2>
+          </div>
+        </div>
+        <div class="timeline-block mb-3">
+          <div class="timeline-content">
+              <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Perfil</p>
+            <h2 class="text-dark text-sm font-weight-bold mb-0">{{usuario.perfil}}</h2>
+          </div>
+        </div>
+        <div class="timeline-block mb-3" *ngIf="usuario.perfil == 'especialista'">
+          <ng-container *ngIf="usuario.verificado">
+            <span class="timeline-step">
+                <i class="material-icons text-success text-gradient">check</i>
+              </span>
+              <div class="timeline-content">
+                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Status</p>
+                <h2 class="text-dark text-sm font-weight-bold mb-0">Especialista verificado</h2>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!usuario.verificado">
+            <span class="timeline-step">
+                <i class="material-icons text-danger text-gradient">cancel</i>
+              </span>
+              <div class="timeline-content">
+                <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">Status</p>
+                <h2 class="text-dark text-sm font-weight-bold mb-0">Especialista <span class="font-weight-bold">NO</span> verificado</h2>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+        <div class="actions">
+            <ng-container *ngIf="usuario && usuario.perfil == 'especialista'">
+              <button style="margin-right: 5px;" type="button" class="btn btn-warning" (click)="verificarUsuario(true)">Verificar</button>
+              <button type="button" class="btn btn-danger" (click)="verificarUsuario(false)">Des Verificar</button>
+            </ng-container>
+            <ng-container *ngIf="usuario">
+              <button style="margin-right: 5px;" type="button" class="btn btn-info" (click)="mostrarHistoriaClinica()">Ver Hist Clinica</button>
+            </ng-container>
+        </div>
+    </div>
+  </div>

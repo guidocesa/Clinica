@@ -10,19 +10,21 @@ import { RegisterPacienteComponent } from './Registros/register-paciente/registe
 import { RegisterComponent } from './Registros/register/register.component';
 import { MenuTurnosComponent } from './Turnos/menu-turnos/menu-turnos.component';
 import { UserNotVerifiedComponent } from './user-not-verified/user-not-verified.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'bienvenido', pathMatch: 'full'},
-  {path: 'login', component: LoginComponent, data: { animation: 'isLeft'}},
+  {path: 'login', component: LoginComponent, data: { animation: 'isDown'}},
   {path: 'registro', component: RegisterComponent, data: { animation: 'isUp'}},
-  {path: 'registroprofesional', component: RegisterEspecialistaComponent, data: { animation: 'isRight'}},
-  {path: 'registropaciente', component: RegisterPacienteComponent, data: { animation: 'isLeft'}},
-  {path: 'bienvenido', component: BienvenidaComponent, data: { animation: 'isLeft'}},
+  {path: 'registroprofesional', component: RegisterEspecialistaComponent, data: { animation: 'isDown'}},
+  {path: 'registropaciente', component: RegisterPacienteComponent, data: { animation: 'isUp'}},
+  {path: 'bienvenido', component: BienvenidaComponent, data: { animation: 'isDown'}},
   {path: 'paneladministrador', component: PanelAdministradorComponent, data: { animation: 'isUp'}},
   {path: 'usuarionoverificado', component: UserNotVerifiedComponent},
-  {path: 'miperfil', loadChildren: () => import('./Perfil/mi-perfil/mi-perfil.module').then( m => m.MiPerfilModule), data: { animation: 'isLeft'}},
-  {path: 'misturnos', component: MenuTurnosComponent, data: { animation: 'isDown'}},
-  {path: 'pacientes', component: PacientesComponent, data: { animation: 'isRight'}}
+  {path: 'miperfil', loadChildren: () => import('./Perfil/mi-perfil/mi-perfil.module').then( m => m.MiPerfilModule), data: { animation: 'isDown'}},
+  {path: 'misturnos', component: MenuTurnosComponent, data: { animation: 'isUp'}},
+  {path: 'pacientes', component: PacientesComponent, data: { animation: 'isDown'}},
+  {path: 'usuarios', component: UsuariosComponent, data: {animation: 'isUp'}}
 ];
 
 @NgModule({

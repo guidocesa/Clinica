@@ -1,0 +1,37 @@
+
+body{
+    background-color: rgb(199, 199, 199);
+}
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+}
+
+.custom-table{
+    width: 60%;
+}
+
+.derecha{
+    /* display: flex;
+    align-items: center; */
+    vertical-align: middle;
+    text-align: right;
+}
+
+.historia{
+    margin: 10px;
+    padding: 10px;
+}
+
+tr{
+    cursor: pointer;
+}
+
+.excel{
+    margin-bottom: 0px !important;
+    margin-left: 5px;
+}

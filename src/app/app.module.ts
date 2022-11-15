@@ -42,6 +42,9 @@ import { BoolToSinoPipe } from './shared/Pipes/bool-to-sino.pipe';
 import { PacientesComponent } from './pacientes/pacientes.component';
 import { AltaHistoriaClinicaComponent } from './alta-historia-clinica/alta-historia-clinica.component';
 import { SharedModule } from './shared/shared.module';
+import { MatFabMenuModule } from '@angular-material-extensions/fab-menu';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { ManejadorUsuarioComponent } from './manejador-usuario/manejador-usuario.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,8 @@ import { SharedModule } from './shared/shared.module';
     HistoriaClinicaComponent,
     PacientesComponent,
     AltaHistoriaClinicaComponent,
+    UsuariosComponent,
+    ManejadorUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,8 @@ import { SharedModule } from './shared/shared.module';
     MatAutocompleteModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    SharedModule
+    SharedModule,
+    MatFabMenuModule
   ],
   providers: [ AngularFireAuth, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, { provide: MatDialogRef, useValue: {}}, DatePipe, {
     provide: RECAPTCHA_SETTINGS,

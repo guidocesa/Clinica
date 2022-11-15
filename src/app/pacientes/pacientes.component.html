@@ -3,7 +3,12 @@
     <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table align-items-center mb-0">
+            <mat-fab-menu color="primary"
+              [fabButtons]="arrayFabs"
+              direction="right"
+              (onFabMenuItemSelected)="pacienteSeleccionado($event)">              
+            </mat-fab-menu>
+            <table *ngIf="usuarioElegido" class="table align-items-center mb-0">
               <thead>
                 <tr>
                   <th class="text-center text-uppercase text-secondary font-weight-bolder">Nombre</th>
@@ -16,23 +21,24 @@
                 <tr *ngIf="listaPacientes.length == 0">
                   <td>No hay pacientes para mostrar</td>
                 </tr>
-                <tr *ngFor="let paciente of listaPacientes" class="row-turno" (click)="seleccionarPaciente(paciente)">
+                <!-- <tr *ngFor="let paciente of listaPacientes" class="row-turno" (click)="seleccionarPaciente(paciente)"> -->
+                <tr class="row-turno" (click)="seleccionarPaciente(usuarioElegido)">
                   <td>
                     <div class="text-center">
-                        <span>{{paciente.nombre}} {{paciente.apellido}}</span>
+                        <span>{{usuarioElegido.nombre}} {{usuarioElegido.apellido}}</span>
                     </div>                
                   </td>
                   <td>
                     <div class="text-center">
-                      {{paciente.dni}}
+                      {{usuarioElegido.dni}}
                     </div>
                   </td>
                   <td class="text-center">
-                    <span>{{paciente.edad}}</span>
+                    <span>{{usuarioElegido.edad}}</span>
                   </td>
                   <td>
                     <div class="text-center">
-                        <span>{{paciente.obraSocial}}</span>
+                        <span>{{usuarioElegido.obraSocial}}</span>
                     </div>
                   </td>
                 </tr>
@@ -41,6 +47,9 @@
           </div>
         </div>
     </div>
+</div>
+<div *ngIf="usuarioElegido" class="turnos">
+  <app-mis-turnos [filtro]="usuarioElegido.nombre + ' ' + usuarioElegido.apellido"></app-mis-turnos>
 </div>
 <div class="historia row mb-4">
     <app-historia-clinica [usuarioElegido]="usuarioElegido" *ngIf="mostrarHistoria"></app-historia-clinica>

@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { UsuarioService } from './usuario.service';
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private afStore: AngularFirestore,
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private loggerService: LoggerService
     ) { 
       this.usuario = null;
   }
@@ -32,6 +34,7 @@ export class AuthService {
           this.afStore.collection('usuarios').doc<Usuario>(cred.user!.uid).ref.get().then(doc=>{
             this.usuario = doc.data()!;
             this.estaLogueado = true;
+            this.loggerService.logLogin(this.usuario!);
             resolve();
           }).catch(error => {
             reject(error);

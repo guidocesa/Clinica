@@ -11,6 +11,7 @@ import { RegisterComponent } from './Registros/register/register.component';
 import { MenuTurnosComponent } from './Turnos/menu-turnos/menu-turnos.component';
 import { UserNotVerifiedComponent } from './user-not-verified/user-not-verified.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { InformesComponent } from './informes/informes.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'bienvenido', pathMatch: 'full'},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'miperfil', loadChildren: () => import('./Perfil/mi-perfil/mi-perfil.module').then( m => m.MiPerfilModule), data: { animation: 'isDown'}},
   {path: 'misturnos', component: MenuTurnosComponent, data: { animation: 'isUp'}},
   {path: 'pacientes', component: PacientesComponent, data: { animation: 'isDown'}},
-  {path: 'usuarios', component: UsuariosComponent, data: {animation: 'isUp'}}
+  {path: 'usuarios', component: UsuariosComponent, data: {animation: 'isUp'}},
+  {path: 'informes', component: InformesComponent, data: {animation: 'isDown'}}
 ];
 
 @NgModule({

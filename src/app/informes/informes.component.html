@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12 mt-2 cont">
+    <div class="card">
+      <div class="card-body">
+        <h2>Informes</h2>
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-md-12 cont" style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+              <button type="button" class="btn btn-primary btn-block mt-2" (click)="downloadInformeLogin()">Descargar Informe de Ingresos</button>
+              <button type="button" class="btn btn-secondary btn-block mt-2" (click)="mostrarGrafico('turnosEsp');">Grafico de Turnos por especialidad</button>             
+              <button type="button" class="btn btn-info btn-block mt-2" (click)="mostrarGrafico('turnosDia');">Grafico de Turnos por dia</button>
+              <button type="button" class="btn btn-dark btn-block mt-2" (click)="mostrarGrafico('turnosFinMed')">Grafico Turnos por Medico</button>
+            </div>
+          </div>
+        </div>
+        <app-turnos-especialidad *ngIf="grafTurnosEsp"></app-turnos-especialidad>
+        <app-turnos-dia *ngIf="grafTurnosDia"></app-turnos-dia>
+        <app-turnos-fin-por-medico-lapso *ngIf="grafTurnosFinMed"></app-turnos-fin-por-medico-lapso>
+    </div>
+  </div>
+</div>

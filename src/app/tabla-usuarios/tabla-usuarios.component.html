@@ -15,7 +15,7 @@
                         {{item.nombre + " " + item.apellido}}
                     </td>
                     <td>
-                        {{item.perfil}}<!-- <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button> -->
+                        {{item.perfil | caps}}<!-- <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button> -->
                     </td>
                     <td>
                         <button *ngIf="item.perfil == 'especialista' && item.verificado === false " type="button" class="btn btn-sm btn-outline-secondary" (click)="habilitarProfesional(item.mail)">Habilitar</button>

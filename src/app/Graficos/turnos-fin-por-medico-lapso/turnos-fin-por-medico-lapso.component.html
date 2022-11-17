@@ -1,0 +1,66 @@
+
+
+<div id="grafico">
+    <div class="row">
+        <div class="col-md-2">
+            <img id="icono" src="../../../assets/health-clinic.png" width="200px">
+        </div>
+        <div class="col-md-6" style="text-align: center;">
+            <h2>Cantidad de turnos Finalizados por Medico en lapso de tiempo</h2>
+            <p>Fecha: {{ fecha | date:'dd-MM-yyyy' }} </p>
+        </div>
+        <div class="dark col-md-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Ingrese período</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input [(ngModel)]="desde" matStartDate placeholder="Desde">
+                    <input [(ngModel)]="hasta" matEndDate placeholder="Hasta">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" #finalizados id="flexCheckDefault" (change)="checkboxChange(finalizados.checked)">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Solo Finalizados
+                </label>
+            </div>
+            <button type="button" class="btn btn-success" (click)="buscar()">Buscar</button>
+            <button type="button" class="btn btn-info" (click)="downloadPdf()" style="margin-left: 10px;">Descargar PDF</button>
+            <button type="button" class="btn btn-info" (click)="exportarExcel()" style="margin-top: 10px;">Descargar Excel</button>
+        </div>
+    </div>
+    <div class="row justify-content-center" style="width: 60%; margin-left: 20%;">
+        <canvas baseChart 
+            [datasets]="datasets" 
+            [labels]="labels" 
+            [options]="options"
+            [legend]="legend"
+            [type]="'bar'" 
+            [plugins]="plugins">
+        </canvas>
+    </div>
+</div>
+
+
+<div style="display: none">
+    <table id="tabla-excel">
+      <caption>Listado de Usuarios</caption>
+      <thead>
+        <tr>
+          <th>Especialidad</th>
+          <th *ngFor="let dia of labels">{{dia}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cantidad de Turnos</td>
+          <td *ngFor="let cant of cantidades">{{cant}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+

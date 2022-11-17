@@ -85,5 +85,9 @@ export class FirestorageService {
     return this.afs.collection('especialidades').snapshotChanges();
   }
 
+  getEspecialidades2() {
+    return this.afs.collection('especialidades').valueChanges();
+  }
+
   
 }

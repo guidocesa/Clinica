@@ -45,6 +45,17 @@ import { SharedModule } from './shared/shared.module';
 import { MatFabMenuModule } from '@angular-material-extensions/fab-menu';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ManejadorUsuarioComponent } from './manejador-usuario/manejador-usuario.component';
+import { InformesComponent } from './informes/informes.component';
+import { TurnosDiaComponent } from './Graficos/turnos-dia/turnos-dia.component';
+import { TurnosEspecialidadComponent } from './Graficos/turnos-especialidad/turnos-especialidad.component';
+import { TurnosFinPorMedicoLapsoComponent } from './Graficos/turnos-fin-por-medico-lapso/turnos-fin-por-medico-lapso.component';
+import { NgChartsModule } from 'ng2-charts';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { PintarTurnoStatusDirective } from './Directivas/pintar-turno-status.directive';
+import { ResaltarDirective } from './Directivas/resaltar.directive';
+import { AgrandarDirective } from './Directivas/agrandar.directive';
 
 @NgModule({
   declarations: [
@@ -70,6 +81,13 @@ import { ManejadorUsuarioComponent } from './manejador-usuario/manejador-usuario
     AltaHistoriaClinicaComponent,
     UsuariosComponent,
     ManejadorUsuarioComponent,
+    InformesComponent,
+    TurnosDiaComponent,
+    TurnosEspecialidadComponent,
+    TurnosFinPorMedicoLapsoComponent,
+    PintarTurnoStatusDirective,
+    ResaltarDirective,
+    AgrandarDirective,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +106,12 @@ import { ManejadorUsuarioComponent } from './manejador-usuario/manejador-usuario
     RecaptchaModule,
     RecaptchaFormsModule,
     SharedModule,
-    MatFabMenuModule
+    MatFabMenuModule,
+    NgChartsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatRippleModule
   ],
   providers: [ AngularFireAuth, { provide: FIREBASE_OPTIONS, useValue: environment.firebase }, { provide: MatDialogRef, useValue: {}}, DatePipe, {
     provide: RECAPTCHA_SETTINGS,
